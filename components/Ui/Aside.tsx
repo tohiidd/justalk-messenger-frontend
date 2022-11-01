@@ -6,6 +6,7 @@ interface AsideTabsProps {
   orientation: "vertical" | "horizontal";
   children?: ReactNode;
   value: number;
+  // eslint-disable-next-line no-unused-vars
   onChange: (event: SyntheticEvent, newValue: number) => void;
 }
 
@@ -86,6 +87,7 @@ export const Aside = styled(AppBar)(({ theme }) => ({
   top: "unset",
   gap: "8px",
   padding: "0 10px",
+  backgroundImage: "unset !important",
   [theme.breakpoints.up("md")]: {
     flexDirection: "column",
     height: "100vh",

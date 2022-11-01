@@ -1,17 +1,19 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useContext } from "react";
 import Image from "next/image";
-import { useMediaQuery, Box, AppBar } from "@mui/material";
+import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Chat, DarkModeOutlined } from "@mui/icons-material";
+import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
 import { Aside, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/Aside";
 import { asideItems } from "data";
+import ColorModeContext from "context/color-mode-context";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(0);
 
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  const { toggleColorMode } = useContext(ColorModeContext);
 
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
@@ -38,9 +40,16 @@ export default function Home() {
                 <AsideTab key={id} icon={<DarkTooltip title={title}>{icon}</DarkTooltip>} />
               ))}
           </AsideTabs>
-          <Box sx={{ flexGrow: { xs: "1", md: "unset" }, textAlign: "center", marginTop: { xs: "unset", md: "auto" } }}>
+          <Box
+            sx={{ flexGrow: { xs: "1", md: "unset" }, textAlign: "center", marginTop: { xs: "unset", md: "auto" } }}
+            onClick={toggleColorMode}
+          >
             <DarkTooltip title="Dark Mode">
-              <DarkModeOutlined sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }} />
+              {theme.palette.mode === "light" ? (
+                <DarkModeOutlined sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }} />
+              ) : (
+                <LightMode sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }} />
+              )}
             </DarkTooltip>
           </Box>
           <Box className="app-bar-avatar">
