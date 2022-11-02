@@ -16,7 +16,7 @@ function SearchBar() {
         }}
         endAdornment={
           <InputAdornment position="end">
-            <Search fontSize="small" color="primary" />
+            <Search fontSize="small" color="primary" sx={{ cursor: "pointer" }} />
           </InputAdornment>
         }
         placeholder="Search here... "

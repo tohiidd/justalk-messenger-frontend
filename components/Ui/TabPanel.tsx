@@ -7,7 +7,7 @@ interface TabPanelProps {
   value: number;
 }
 
-export const TabPanelTitle = styled((props: any) => <Typography {...props} />)(({ theme }) => ({
+export const TabPanelTitle = styled((props: any) => <Typography {...props} component="h1" />)(({ theme }) => ({
   flexGrow: "1",
   color: theme.palette.common.black,
   fontSize: "1.2rem",
