@@ -4,6 +4,7 @@ declare module "@mui/material/styles/createPalette" {
   interface CommonColors {
     lightGreen: string;
     grey: string;
+    grey100: string;
   }
 }
 
@@ -16,6 +17,8 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             white: "#fff",
             lightGreen: "#4eac6d33",
             grey: "#f2f2f2",
+            grey100: "#f6f6f9",
+            black: "#495057",
           },
           primary: { main: "#adb5bd" },
           secondary: { main: "#8f9198" },
@@ -26,6 +29,8 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             white: "#262626",
             lightGreen: "#4eac6d33",
             grey: "#2e2e2e",
+            grey100: "#2e2e2e",
+            black: "#adb5bd",
           },
           primary: { main: "#5a636c" },
           secondary: { main: "#797c8c" },

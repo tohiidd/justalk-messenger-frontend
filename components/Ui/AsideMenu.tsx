@@ -48,8 +48,10 @@ interface AsideTabProps {
 export const AsideTab = styled((props: AsideTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
   color: "#878a92",
   minWidth: "unset",
+  minHeight: "61px",
   [theme.breakpoints.up("md")]: {
     minWidth: "64px",
+    minHeight: "48px",
   },
   "& .MuiSvgIcon-root": {
     fontSize: "1.3rem",
@@ -64,7 +66,7 @@ export const AsideTab = styled((props: AsideTabProps) => <Tab disableRipple {...
 }));
 
 export const DarkTooltip = styled(({ className, ...props }: TooltipProps) => (
-  <Tooltip {...props} arrow classes={{ popper: className }} placement="right" disableInteractive />
+  <Tooltip placement="right" {...props} arrow classes={{ popper: className }} disableInteractive />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.black,
@@ -74,7 +76,7 @@ export const DarkTooltip = styled(({ className, ...props }: TooltipProps) => (
   },
 }));
 
-export const Aside = styled(AppBar)(({ theme }) => ({
+export const AsideMenu = styled(AppBar)(({ theme }) => ({
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
