@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Add } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import AddContactModal from "components/Modals/AddContactModal";
+import AddFriendModal from "components/Modals/AddFriendModal";
 import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
@@ -53,7 +53,7 @@ function ChatList() {
           </Box>
         </Box>
       </Box>
-      <AddContactModal openAddContact={openAddContact} setOpenAddContact={setOpenAddContact} />
+      <AddFriendModal openAddContact={openAddContact} setOpenAddContact={setOpenAddContact} />
     </section>
   );
 }

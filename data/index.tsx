@@ -25,7 +25,7 @@ export const asideItems = [
   },
   {
     id: "4",
-    title: "Contacts",
+    title: "Friends",
     icon: <RecentActorsOutlined />,
   },
   {
