@@ -6,8 +6,9 @@ import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import ChatMessage from "./ChatMessage";
+import { chatMessageContainerStyles } from "./styles";
 
-function ChatList() {
+function Chats() {
   const [openAddContact, setOpenAddContact] = useState(false);
   return (
     <>
@@ -27,24 +28,7 @@ function ChatList() {
           <Typography color="secondary" component="h4" fontSize=".7rem" mb={2} fontWeight="500" sx={{ px: 3 }}>
             RECENT
           </Typography>
-          <Box
-            sx={{
-              height: { xs: "calc(100vh - 235px )", md: "calc(100vh - 175px )" },
-              "&::-webkit-scrollbar": { width: "10px" },
-              overflow: "overlay",
-              "&::-webkit-scrollbar-track": { backgroundColor: "transparent", borderRadius: "100px" },
-              "&::-webkit-scrollbar-thumb": {
-                visibility: "hidden",
-                backgroundColor: "secondary.main",
-                borderRadius: "100px",
-              },
-              "&:hover": {
-                "&::-webkit-scrollbar-thumb": {
-                  visibility: "visible",
-                },
-              },
-            }}
-          >
+          <Box sx={chatMessageContainerStyles}>
             {Array(15)
               .fill(null)
               .map((item, index) => (
@@ -58,4 +42,4 @@ function ChatList() {
   );
 }
 
-export default ChatList;
+export default Chats;

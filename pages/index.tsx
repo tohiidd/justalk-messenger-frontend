@@ -7,7 +7,7 @@ import TabPanel from "components/Ui/TabPanel";
 import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
 import { asideItems } from "data";
 import ColorModeContext from "context/ColorModeContext";
-import ChatList from "components/ChatList/ChatList";
+import Chats from "components/Chats/Chats";
 import Profile from "components/Profile/Profile";
 import Groups from "components/Groups/Groups";
 
@@ -69,7 +69,7 @@ export default function Home() {
             <Profile />
           </TabPanel>
           <TabPanel value={selectedTab} index={1}>
-            <ChatList />
+            <Chats />
           </TabPanel>
           <TabPanel value={selectedTab} index={2}>
             <Groups />

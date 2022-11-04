@@ -1,26 +1,10 @@
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
-
-const lineClamp1 = { WebkitLineClamp: "1", display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" };
+import { chatMessageStyles, lineClamp1Styles } from "./styles";
 
 function ChatMessage() {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: "8px",
-        p: "6px 24px",
-        cursor: "pointer",
-        transition: "all 200ms",
-        "&:hover": { backgroundColor: "common.grey100" },
-        "&.active": {
-          backgroundColor: "success.main",
-          "& .chat-text": {
-            color: "#fff",
-          },
-        },
-      }}
-    >
+    <Box sx={chatMessageStyles}>
       <Box sx={{ display: "flex", alignItems: "center", img: { borderRadius: "50%" } }}>
         <Image
           src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667375697/jusTalk/zewq69s3crcubsawfsa9.jpg"
@@ -35,7 +19,7 @@ function ChatMessage() {
             textTransform: "capitalize",
             fontSize: ".9rem",
             fontWeight: "500",
-            ...lineClamp1,
+            ...lineClamp1Styles,
           }}
           variant="subtitle1"
           color="primary"
@@ -48,7 +32,7 @@ function ChatMessage() {
           color="secondary"
           sx={{
             fontSize: ".7rem",
-            ...lineClamp1,
+            ...lineClamp1Styles,
           }}
           className="chat-text"
         >
@@ -56,13 +40,7 @@ function ChatMessage() {
         </Typography>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "end", marginLeft: "auto" }}>
-        <Typography
-          variant="subtitle1"
-          component="span"
-          color="secondary"
-          sx={{ fontSize: ".7rem" }}
-          className="chat-text"
-        >
+        <Typography variant="subtitle1" component="span" color="secondary" sx={{ fontSize: ".7rem" }} className="text">
           22:10
         </Typography>
         <Typography
