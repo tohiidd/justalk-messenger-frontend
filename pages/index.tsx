@@ -9,6 +9,7 @@ import { asideItems } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import ChatList from "components/ChatList/ChatList";
 import Profile from "components/Profile/Profile";
+import Groups from "components/Groups/Groups";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -71,7 +72,7 @@ export default function Home() {
             <ChatList />
           </TabPanel>
           <TabPanel value={selectedTab} index={2}>
-            Item Three
+            <Groups />
           </TabPanel>
           <TabPanel value={selectedTab} index={3}>
             Item Four

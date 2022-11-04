@@ -10,7 +10,7 @@ import ChatMessage from "./ChatMessage";
 function ChatList() {
   const [openAddContact, setOpenAddContact] = useState(false);
   return (
-    <section>
+    <>
       <Box>
         <Box sx={{ display: "flex", p: 3, pb: 0 }}>
           <TabPanelTitle>Chats</TabPanelTitle>
@@ -54,7 +54,7 @@ function ChatList() {
         </Box>
       </Box>
       <AddFriendModal openAddContact={openAddContact} setOpenAddContact={setOpenAddContact} />
-    </section>
+    </>
   );
 }
 

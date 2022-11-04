@@ -31,7 +31,7 @@ export default function Profile() {
     setOpenMenu(false);
   };
   return (
-    <section>
+    <>
       <Box
         sx={{
           position: "relative",
@@ -157,6 +157,6 @@ export default function Profile() {
           </Box>
         </Box>
       </Box>
-    </section>
+    </>
   );
 }
