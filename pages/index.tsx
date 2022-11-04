@@ -4,10 +4,11 @@ import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
-import { AsideMenu, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/AsideMenu";
+import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
 import { asideItems } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import ChatList from "components/ChatList/ChatList";
+import Profile from "components/Profile/Profile";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -53,18 +54,19 @@ export default function Home() {
               )}
             </DarkTooltip>
           </Box>
-          <Box className="app-bar-avatar">
+          <AvatarWrapper>
             <Image
               src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667140257/jusTalk/krdtwxpkf3baznlehems.jpg"
               alt="avatar"
               width={30}
               height={30}
-              className="avatar-img"
             />
-          </Box>
+          </AvatarWrapper>
         </AsideMenu>
         <section>
-          <TabPanel value={selectedTab} index={0}></TabPanel>
+          <TabPanel value={selectedTab} index={0}>
+            <Profile />
+          </TabPanel>
           <TabPanel value={selectedTab} index={1}>
             <ChatList />
           </TabPanel>

@@ -5,6 +5,7 @@ declare module "@mui/material/styles/createPalette" {
     lightGreen: string;
     grey: string;
     grey100: string;
+    grey200: string;
     softDark: string;
   }
 }
@@ -19,6 +20,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             lightGreen: "#4eac6d33",
             grey: "#f2f2f2",
             grey100: "#f6f6f9",
+            grey200: "#797c8c",
             black: "#495057",
             softDark: "rgba(52,58,64,.18)",
           },
@@ -32,6 +34,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             lightGreen: "#4eac6d33",
             grey: "#2e2e2e",
             grey100: "#2e2e2e",
+            grey200: "#8f9198",
             black: "#adb5bd",
             softDark: "rgba(143,145,152,.18)",
           },

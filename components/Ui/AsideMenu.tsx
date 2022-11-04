@@ -1,5 +1,5 @@
 import { ReactNode, SyntheticEvent, ReactElement } from "react";
-import { AppBar, Tab, Tabs, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
+import { AppBar, Box, Tab, Tabs, Tooltip, tooltipClasses, TooltipProps } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 interface AsideTabsProps {
@@ -106,24 +106,24 @@ export const AsideMenu = styled(AppBar)(({ theme }) => ({
       width: "100%",
     },
   },
-  "& .app-bar-avatar": {
-    flexGrow: "1",
-    height: { xs: "unset", md: "70px" },
-    display: "flex",
-    alignItems: "center",
-    cursor: "pointer",
-    [theme.breakpoints.up("md")]: {
-      flexGrow: "unset",
-      height: "70px",
-    },
-    "& .avatar-img": {
-      margin: "auto",
-      borderRadius: "50%",
-      border: "2px solid white",
-      [theme.breakpoints.up("sm")]: {
-        outline: "3px solid white",
-        border: "none",
-      },
+}));
+
+export const AvatarWrapper = styled(Box)(({ theme }) => ({
+  flexGrow: "1",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
+  [theme.breakpoints.up("md")]: {
+    flexGrow: "unset",
+    height: "70px",
+  },
+  img: {
+    margin: "auto",
+    borderRadius: "50%",
+    border: "2px solid white",
+    [theme.breakpoints.up("sm")]: {
+      outline: "3px solid white",
+      border: "none",
     },
   },
 }));
