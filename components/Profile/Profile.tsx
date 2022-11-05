@@ -1,4 +1,3 @@
-import { useState, useRef, SyntheticEvent } from "react";
 import Image from "next/image";
 import {
   EmailOutlined,

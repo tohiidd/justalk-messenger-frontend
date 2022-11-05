@@ -1,13 +1,11 @@
 import { useState } from "react";
-import Image from "next/image";
 import { Add } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import CreateGroupModal from "components/Modals/CreateGroupModal";
-import { avatarStyles, chatMessageContainerStyles, chatMessageStyles, lineClamp1Styles } from "components/Chats/styles";
-import { FriendAvatar, FriendName } from "components/Ui/Friend";
+import { chatMessageContainerStyles } from "components/Chats/styles";
 import Group from "./Group";
 
 function Groups() {

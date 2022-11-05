@@ -5,12 +5,8 @@ import { useTheme } from "@mui/material/styles";
 import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
 import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
-import { asideItems } from "data";
+import { asideMenuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
-import Chats from "components/Chats/Chats";
-import Profile from "components/Profile/Profile";
-import Groups from "components/Groups/Groups";
-import Friends from "components/Friends/Friends";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -18,6 +14,8 @@ export default function Home() {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
   const { toggleColorMode } = useContext(ColorModeContext);
+
+  const menuTabs = asideMenuTabs.filter(({ title }) => (isMd ? title : title !== "Profile"));
 
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
@@ -38,11 +36,9 @@ export default function Home() {
             onChange={handleChange}
             aria-label="AsideMenu tabs "
           >
-            {asideItems
-              .filter(({ title }) => (isMd ? title : title !== "Profile"))
-              .map(({ id, title, icon }) => (
-                <AsideTab key={id} icon={<DarkTooltip title={title}>{icon}</DarkTooltip>} />
-              ))}
+            {menuTabs.map(({ id, title, icon }) => (
+              <AsideTab key={id} icon={<DarkTooltip title={title}>{icon}</DarkTooltip>} />
+            ))}
           </AsideTabs>
           <Box
             sx={{ flexGrow: { xs: "1", md: "unset" }, textAlign: "center", marginTop: { xs: "unset", md: "auto" } }}
@@ -66,24 +62,11 @@ export default function Home() {
           </AvatarWrapper>
         </AsideMenu>
         <section>
-          <TabPanel value={selectedTab} index={0}>
-            <Profile />
-          </TabPanel>
-          <TabPanel value={selectedTab} index={1}>
-            <Chats />
-          </TabPanel>
-          <TabPanel value={selectedTab} index={2}>
-            <Groups />
-          </TabPanel>
-          <TabPanel value={selectedTab} index={3}>
-            <Friends />
-          </TabPanel>
-          <TabPanel value={selectedTab} index={4}>
-            Item Five
-          </TabPanel>
-          <TabPanel value={selectedTab} index={5}>
-            Item Six
-          </TabPanel>
+          {menuTabs.map(({ id, panel }, index) => (
+            <TabPanel key={id} value={selectedTab} index={index}>
+              {panel}
+            </TabPanel>
+          ))}
         </section>
         <section></section>
       </Box>
