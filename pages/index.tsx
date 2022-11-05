@@ -7,6 +7,7 @@ import TabPanel from "components/Ui/TabPanel";
 import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
 import { asideMenuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
+import GetStartedConversation from "components/Conversation/GetStartedConversation";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -27,7 +28,7 @@ export default function Home() {
         <AsideMenu>
           {isMd && (
             <Box className="app-bar-logo">
-              <Chat sx={{ color: "#4eac6d", verticalAlign: "middle" }} />
+              <Chat sx={{ color: "success.main", verticalAlign: "middle" }} />
             </Box>
           )}
           <AsideTabs
@@ -68,7 +69,17 @@ export default function Home() {
             </TabPanel>
           ))}
         </section>
-        <section></section>
+        <Box
+          component="section"
+          sx={{
+            width: "100%",
+            backgroundImage:
+              "url(https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667645283/jusTalk/eoojdubgmbo3jcnmssqc.png)",
+            backgroundColor: "common.grey",
+          }}
+        >
+          <GetStartedConversation />
+        </Box>
       </Box>
     </section>
   );
