@@ -7,6 +7,8 @@ import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import CreateGroupModal from "components/Modals/CreateGroupModal";
 import { avatarStyles, chatMessageContainerStyles, chatMessageStyles, lineClamp1Styles } from "components/Chats/styles";
+import { FriendAvatar, FriendName } from "components/Ui/Friend";
+import Group from "./Group";
 
 function Groups() {
   const [openAddGroup, setOpenAddGroup] = useState(false);
@@ -26,24 +28,7 @@ function Groups() {
           <SearchBar />
         </Box>
         <Box sx={chatMessageContainerStyles}>
-          <Box sx={chatMessageStyles}>
-            {/* <Image src="" alt="group" width={40} height={40} /> */}
-            <Box sx={avatarStyles}>G</Box>
-            <Typography
-              sx={{
-                textTransform: "capitalize",
-                fontSize: ".9rem",
-                fontWeight: "500",
-                flexGrow: "1",
-                ...lineClamp1Styles,
-              }}
-              variant="subtitle1"
-              color="primary"
-              className="text"
-            >
-              #General
-            </Typography>
-          </Box>
+          <Group />
         </Box>
       </Box>
       <CreateGroupModal openAddGroup={openAddGroup} setOpenAddGroup={setOpenAddGroup} />

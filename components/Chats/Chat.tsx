@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 import { chatMessageStyles, lineClamp1Styles } from "./styles";
+import { FriendName } from "components/Ui/Friend";
 
-function ChatMessage() {
+function Chat() {
   return (
     <Box sx={chatMessageStyles}>
       <Box sx={{ display: "flex", alignItems: "center", img: { borderRadius: "50%" } }}>
@@ -14,19 +15,7 @@ function ChatMessage() {
         />
       </Box>
       <Box>
-        <Typography
-          sx={{
-            textTransform: "capitalize",
-            fontSize: ".9rem",
-            fontWeight: "500",
-            ...lineClamp1Styles,
-          }}
-          variant="subtitle1"
-          color="primary"
-          className="chat-text"
-        >
-          Katrina Winters
-        </Typography>
+        <FriendName className="friend-name">Katrina Winters</FriendName>
         <Typography
           variant="subtitle1"
           color="secondary"
@@ -63,4 +52,4 @@ function ChatMessage() {
   );
 }
 
-export default ChatMessage;
+export default Chat;

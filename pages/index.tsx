@@ -10,9 +10,10 @@ import ColorModeContext from "context/ColorModeContext";
 import Chats from "components/Chats/Chats";
 import Profile from "components/Profile/Profile";
 import Groups from "components/Groups/Groups";
+import Friends from "components/Friends/Friends";
 
 export default function Home() {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(1);
 
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
@@ -75,7 +76,7 @@ export default function Home() {
             <Groups />
           </TabPanel>
           <TabPanel value={selectedTab} index={3}>
-            Item Four
+            <Friends />
           </TabPanel>
           <TabPanel value={selectedTab} index={4}>
             Item Five

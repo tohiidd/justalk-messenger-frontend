@@ -14,22 +14,10 @@ import { TabPanelTitle } from "components/Ui/TabPanel";
 import { AvatarWrapper } from "components/Ui/AsideMenu";
 import { headerStyles } from "./styles";
 import Dropdown from "../Ui/Dropdown";
+import useDisplayMenu from "hooks/useDisplayMenu";
 
 export default function Profile() {
-  const [openMenu, setOpenMenu] = useState(false);
-  const anchorRef = useRef<HTMLButtonElement>(null);
-
-  const handleToggle = () => {
-    setOpenMenu((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event: Event | SyntheticEvent) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-      return;
-    }
-
-    setOpenMenu(false);
-  };
+  const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
   return (
     <>
       <Box

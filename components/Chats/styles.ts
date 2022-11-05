@@ -30,9 +30,12 @@ export const chatMessageStyles = {
   "&:hover": { backgroundColor: "common.grey100" },
   "&.active": {
     backgroundColor: "success.main",
-    "& .text": {
+    "& .friend-name": {
       color: "#fff",
     },
+  },
+  img: {
+    borderRadius: "50%",
   },
 };
 

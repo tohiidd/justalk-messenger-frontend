@@ -6,15 +6,15 @@ import { OutlineButton, SuccessButton } from "components/Ui/Buttons";
 import { buttonsWrapperStyles, modalHeaderStyles, modalWrapperStyles } from "./styles";
 
 interface AddFriendModalProps {
-  openAddContact: boolean;
-  setOpenAddContact: Dispatch<SetStateAction<boolean>>;
+  openAddFriend: boolean;
+  setOpenAddFriend: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function AddFriendModal({ openAddContact, setOpenAddContact }: AddFriendModalProps) {
-  const handleClose = () => setOpenAddContact(false);
+export default function AddFriendModal({ openAddFriend, setOpenAddFriend }: AddFriendModalProps) {
+  const handleClose = () => setOpenAddFriend(false);
   return (
     <Modal
-      open={openAddContact}
+      open={openAddFriend}
       onClose={handleClose}
       closeAfterTransition
       BackdropComponent={Backdrop}
@@ -22,7 +22,7 @@ export default function AddFriendModal({ openAddContact, setOpenAddContact }: Ad
         timeout: 500,
       }}
     >
-      <Fade in={openAddContact}>
+      <Fade in={openAddFriend}>
         <Box sx={modalWrapperStyles}>
           <Box sx={modalHeaderStyles}>
             <Typography component="h2" color="common.black">

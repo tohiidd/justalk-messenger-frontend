@@ -15,7 +15,12 @@ function Dropdown({ openMenu, handleClose, anchor, children }: DropdownProps) {
       placement="bottom-start"
       transition
       disablePortal
-      sx={{ backgroundColor: "common.white", zIndex: "11" }}
+      sx={{
+        backgroundColor: "common.white",
+        zIndex: "11",
+        boxShadow: "0 2px 4px rgb(15 34 58 / 12%)",
+        borderRadius: "2px",
+      }}
     >
       {({ TransitionProps, placement }) => (
         <Grow
