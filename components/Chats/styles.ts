@@ -6,18 +6,23 @@ export const lineClamp1Styles = {
 };
 export const chatMessageContainerStyles = {
   height: { xs: "calc(100vh - 235px )", md: "calc(100vh - 175px )" },
+  maskImage: "linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
+  maskSize: "100% 20000px",
+  maskPosition: " left bottom",
+  WebkitMaskImage:
+    " linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
+  WebkitMaskSize: " 100% 20000px",
+  WebkitMaskPosition: " left bottom",
+  transition: " mask-position 0.3s, -webkit-mask-position 0.3s",
+  overflowY: "scroll",
   "&::-webkit-scrollbar": { width: "10px" },
-  overflow: "overlay",
   "&::-webkit-scrollbar-track": { backgroundColor: "transparent", borderRadius: "100px" },
   "&::-webkit-scrollbar-thumb": {
-    visibility: "hidden",
     backgroundColor: "secondary.main",
     borderRadius: "100px",
   },
   "&:hover": {
-    "&::-webkit-scrollbar-thumb": {
-      visibility: "visible",
-    },
+    WebkitMaskPosition: "left top",
   },
 };
 export const chatMessageStyles = {
