@@ -27,6 +27,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           primary: { main: "#5a636c" },
           secondary: { main: "#8f9198" },
           success: { main: "#4eac6d" },
+          error: { main: "#ef476f" },
         }
       : {
           common: {
@@ -41,6 +42,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
           primary: { main: "#adb5bd" },
           secondary: { main: "#797c8c" },
           success: { main: "#4eac6d" },
+          error: { main: "#ef476f" },
         }),
   },
 });

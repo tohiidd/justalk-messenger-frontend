@@ -15,4 +15,12 @@ export const Input = styled(OutlinedInput)(({ theme }) => ({
   "& .MuiInputBase-input::placeholder": {
     fontSize: ".8rem",
   },
+  "&.error": {
+    "& .MuiOutlinedInput-notchedOutline": {
+      borderColor: `${theme.palette.error.main} !important`,
+    },
+    "& .Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: `${theme.palette.error.main} !important`,
+    },
+  },
 }));

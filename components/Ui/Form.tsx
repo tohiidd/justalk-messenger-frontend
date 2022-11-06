@@ -21,6 +21,12 @@ export const FormSubtitle = styled(Typography)(({ theme }) => ({
   a: { color: theme.palette.success.main },
 }));
 
+export const ErrorLabel = styled(Typography)(({ theme }) => ({
+  fontSize: ".7rem",
+  marginTop: "2px",
+  fontWeight: 500,
+  color: theme.palette.error.main,
+}));
 const BpIcon = styled("span")(({ theme }) => ({
   borderRadius: 3,
   width: 16,
@@ -47,11 +53,11 @@ const BpIcon = styled("span")(({ theme }) => ({
   },
 }));
 
-export const visibleIconStyles={
+export const visibleIconStyles = {
   position: "absolute",
   right: "0",
   "& .MuiSvgIcon-root": { color: "secondary.main", fontSize: "1rem" },
-}
+};
 
 const BpCheckedIcon = styled(BpIcon)({
   backgroundColor: "#4eac6d",
