@@ -19,3 +19,14 @@ export const OutlineButton = styled(Button)(({ theme }) => ({
     textDecoration: "underline",
   },
 }));
+
+export const FormButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.success.main,
+  color: "white",
+  width: "100%",
+  height: "40px",
+  fontSize: ".8rem",
+  "&:hover": {
+    backgroundColor: theme.palette.success.dark,
+  },
+}));

@@ -11,6 +11,7 @@ function AuthLayout({ children }: PropsWithChildren) {
         width: { md: "100vw" },
         flexDirection: { xs: "column ", md: "row" },
         height: { md: "100vh" },
+        minHeight: "100vh",
         backgroundColor: "success.main",
       }}
     >
@@ -51,7 +52,7 @@ function AuthLayout({ children }: PropsWithChildren) {
           sx={{
             height: "100%",
             borderRadius: "15px",
-            backgroundColor: "#fff",
+            backgroundColor: "common.white",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

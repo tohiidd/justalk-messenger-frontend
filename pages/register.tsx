@@ -1,11 +1,15 @@
-import { FormEvent } from "react";
-import { Box, FormControl, FormLabel, Typography } from "@mui/material";
+import { useState, FormEvent } from "react";
+import { Box, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
-import { SuccessButton } from "components/Ui/Buttons";
+import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
 import Link from "next/link";
+import { FormSubtitle, FormTitle, Label, visibleIconStyles } from "components/Ui/Form";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function Register() {
+  const [showPassword, setShowPassword] = useState({ main: false, confirm: false });
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
   };
@@ -14,31 +18,49 @@ export default function Register() {
     <AuthLayout>
       <form onSubmit={handleSubmit}>
         <Box textAlign="center">
-          <Typography component="h1" sx={{ color: "common.black", fontSize: "1.5rem", fontWeight: 500 }}>
-            Register Account
-          </Typography>
-          <Typography sx={{ color: "common.grey200", fontSize: ".8rem" }}>
-            Get your free jusTalk account now.
-          </Typography>
+          <FormTitle variant="h1">Register Account</FormTitle>
+          <FormSubtitle sx={{ mt: "0px !important" }}>Get your free jusTalk account now.</FormSubtitle>
         </Box>
         <Box sx={{ mt: "30px" }}>
           <FormControl sx={{ width: "100%" }}>
-            <FormLabel sx={{ fontSize: ".8rem", fontWeight: "500", color: "common.black", mb: 1 }}>Email</FormLabel>
+            <Label>Email</Label>
             <Input placeholder="Enter Email" />
           </FormControl>
           <FormControl sx={{ width: "100%", mt: 2 }}>
-            <FormLabel sx={{ fontSize: ".8rem", fontWeight: "500", color: "common.black", mb: 1 }}>Username</FormLabel>
+            <Label>Username</Label>
             <Input placeholder="Enter Username" />
           </FormControl>
           <FormControl sx={{ width: "100%", mt: 2 }}>
-            <FormLabel sx={{ fontSize: ".8rem", fontWeight: "500", color: "common.black", mb: 1 }}>Password</FormLabel>
-            <Input type="Password" placeholder="Enter Password" />
+            <Label>Password</Label>
+            <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <Input
+                sx={{ width: "100%", paddingRight: "30px" }}
+                type={showPassword.main ? "Password" : "text"}
+                placeholder="Enter Password"
+              />
+              <IconButton
+                sx={visibleIconStyles}
+                onClick={() => setShowPassword((prev) => ({ ...prev, main: !prev.main }))}
+              >
+                {showPassword.main ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </Box>{" "}
           </FormControl>
           <FormControl sx={{ width: "100%", mt: 2 }}>
-            <FormLabel sx={{ fontSize: ".8rem", fontWeight: "500", color: "common.black", mb: 1 }}>
-              Confirm Password
-            </FormLabel>
-            <Input type="Password" placeholder="Enter Password" />
+            <Label>Confirm Password</Label>
+            <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <Input
+                sx={{ width: "100%", paddingRight: "30px" }}
+                type={showPassword.confirm ? "Password" : "text"}
+                placeholder="Confirm Password"
+              />
+              <IconButton
+                sx={visibleIconStyles}
+                onClick={() => setShowPassword((prev) => ({ ...prev, confirm: !prev.confirm }))}
+              >
+                {showPassword.confirm ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </Box>
           </FormControl>
         </Box>
         <Box>
@@ -47,20 +69,12 @@ export default function Register() {
           </Typography>
         </Box>
         <Box>
-          <SuccessButton sx={{ width: "100%", height: "40px", fontSize: ".8rem" }}>Register</SuccessButton>
+          <FormButton>Register</FormButton>
         </Box>
         <Box>
-          <Typography
-            sx={{
-              fontSize: ".8rem",
-              textAlign: "center",
-              mt: "10px",
-              color: "common.grey200",
-              a: { color: "success.main" },
-            }}
-          >
+          <FormSubtitle>
             Already have an account?<Link href="#"> Login</Link>
-          </Typography>
+          </FormSubtitle>
         </Box>
       </form>
     </AuthLayout>
