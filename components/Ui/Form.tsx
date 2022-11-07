@@ -1,4 +1,4 @@
-import { Checkbox, CheckboxProps, FormLabel, Typography } from "@mui/material";
+import { Box, Checkbox, CheckboxProps, FormLabel, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 export const Label = styled(FormLabel)(({ theme }) => ({
@@ -90,3 +90,13 @@ export const BpCheckBox = (props: CheckboxProps) => (
     {...props}
   />
 );
+
+export const DangerAlert = styled(Box)(({ theme }) => ({
+  color: "#8f2b43",
+  backgroundColor: "#fcdae2",
+  border: "1px solid #fac8d4",
+  borderRadius: "4px",
+  padding: "12px 20px",
+  fontSize: ".8rem",
+  fontWeight: 500,
+}));

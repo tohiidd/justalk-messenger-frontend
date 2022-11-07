@@ -1,30 +1,68 @@
-import { FormEvent, useState } from "react";
-import { Box, FormControl, FormControlLabel, IconButton } from "@mui/material";
+import { useState } from "react";
+import * as yup from "yup";
+import { Box, CircularProgress, FormControl, FormControlLabel, IconButton } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
 import Link from "next/link";
-import { BpCheckBox, FormSubtitle, FormTitle, Label, visibleIconStyles } from "components/Ui/Form";
+import {
+  BpCheckBox,
+  DangerAlert,
+  ErrorLabel,
+  FormSubtitle,
+  FormTitle,
+  Label,
+  visibleIconStyles,
+} from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useFormik } from "formik";
+
+interface IValues {
+  username: string;
+  password: string;
+}
+
+export const loginSchema = yup.object().shape({
+  username: yup.string().required("Please enter username"),
+  password: yup.string().required("Please enter password"),
+});
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const onSubmit = (values: IValues) => {
+    console.log(values);
   };
+
+  const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched } = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit,
+  });
 
   return (
     <AuthLayout>
       <form onSubmit={handleSubmit}>
-        <Box textAlign="center">
+        <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Welcome Back</FormTitle>
           <FormSubtitle sx={{ mt: "0px !important" }}>Sign in to continue with JusTalk.</FormSubtitle>
         </Box>
-        <Box sx={{ mt: "30px" }}>
+        {/* <DangerAlert>Username and password are invalid. Please enter correct username and password</DangerAlert> */}
+        <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
-            <Input placeholder="Enter Username" />
+            <Input
+              placeholder="Enter Username"
+              id="username"
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              className={errors?.username && touched?.username ? "error" : ""}
+            />
+            {errors?.username && touched?.username && <ErrorLabel>{errors?.username}</ErrorLabel>}
           </FormControl>
           <FormControl
             sx={{ width: "100%", mt: 2, a: { fontSize: ".8rem", color: "common.grey200", fontWeight: 500 } }}
@@ -38,11 +76,17 @@ export default function Login() {
                 sx={{ width: "100%", paddingRight: "30px" }}
                 type={showPassword ? "text" : "Password"}
                 placeholder="Enter Password"
+                id="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors?.password && touched?.password ? "error" : ""}
               />
               <IconButton sx={visibleIconStyles} onClick={() => setShowPassword((prev) => !prev)}>
                 {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </Box>
+            {errors?.password && touched?.password && <ErrorLabel>{errors?.password}</ErrorLabel>}
           </FormControl>
         </Box>
         <Box>
@@ -57,11 +101,11 @@ export default function Login() {
           />
         </Box>
         <Box>
-          <FormButton>Login</FormButton>
+          <FormButton>{isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Login"}</FormButton>
         </Box>
         <Box>
           <FormSubtitle>
-            Don&apos;t have an account?<Link href="#"> Register</Link>
+            Don&apos;t have an account?<Link href="/register"> Register</Link>
           </FormSubtitle>
         </Box>
       </form>

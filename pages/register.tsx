@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as yup from "yup";
-import { Box, FormControl, IconButton, Typography } from "@mui/material";
+import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
@@ -135,11 +135,11 @@ export default function Register() {
           </Typography>
         </Box>
         <Box>
-          <FormButton>Register</FormButton>
+          <FormButton>{isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Register"}</FormButton>
         </Box>
         <Box>
           <FormSubtitle>
-            Already have an account?<Link href="#"> Login</Link>
+            Already have an account?<Link href="/login"> Login</Link>
           </FormSubtitle>
         </Box>
       </form>
