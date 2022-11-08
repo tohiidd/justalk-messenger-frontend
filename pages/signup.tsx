@@ -5,9 +5,10 @@ import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
 import Link from "next/link";
-import { ErrorLabel, FormSubtitle, FormTitle, Label, visibleIconStyles } from "components/Ui/Form";
+import { DangerAlert, ErrorLabel, FormSubtitle, FormTitle, Label, visibleIconStyles } from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
+import { useSignupMutation } from "redux/auth/authApi";
 
 interface IValues {
   email: string;
@@ -35,10 +36,22 @@ export const registerSchema = yup.object().shape({
     .required("Please confirm your password"),
 });
 
-export default function Register() {
+export default function SignUp() {
   const [showPassword, setShowPassword] = useState({ main: false, confirm: false });
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [signup] = useSignupMutation();
+
   const onSubmit = async (values: IValues) => {
     console.log(values);
+    const user = { email: values.email, username: values.username, password: values.password };
+    try {
+      const res = await signup(user).unwrap();
+      console.log(res);
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.message);
+    }
   };
 
   const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched } = useFormik({
@@ -55,11 +68,12 @@ export default function Register() {
   return (
     <AuthLayout>
       <form onSubmit={handleSubmit}>
-        <Box textAlign="center">
+        <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Register Account</FormTitle>
           <FormSubtitle sx={{ mt: "0px !important" }}>Get your free jusTalk account now.</FormSubtitle>
         </Box>
-        <Box sx={{ mt: "30px" }}>
+        {errorMessage && <DangerAlert>{errorMessage}</DangerAlert>}
+        <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%" }}>
             <Label>Email</Label>
             <Input

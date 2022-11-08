@@ -16,6 +16,7 @@ import {
 } from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
+import { useLoginMutation } from "redux/auth/authApi";
 
 interface IValues {
   username: string;
@@ -29,9 +30,20 @@ export const loginSchema = yup.object().shape({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = (values: IValues) => {
+  const [login] = useLoginMutation();
+
+  const onSubmit = async (values: IValues) => {
     console.log(values);
+    const user = { username: values.username, password: values.password };
+    try {
+      const res = await login(user).unwrap();
+      console.log(res);
+    } catch (error: any) {
+      console.log(error);
+      setErrorMessage(error.message);
+    }
   };
 
   const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched } = useFormik({
@@ -50,7 +62,7 @@ export default function Login() {
           <FormTitle variant="h1">Welcome Back</FormTitle>
           <FormSubtitle sx={{ mt: "0px !important" }}>Sign in to continue with JusTalk.</FormSubtitle>
         </Box>
-        {/* <DangerAlert>Username and password are invalid. Please enter correct username and password</DangerAlert> */}
+        {errorMessage && <DangerAlert>{errorMessage}</DangerAlert>}
         <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
