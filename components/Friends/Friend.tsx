@@ -1,41 +1,37 @@
 import Image from "next/image";
 import { Box, IconButton, ListItemIcon, ListItemText, MenuItem } from "@mui/material";
 import { chatMessageStyles } from "components/Chats/styles";
-import { FriendName } from "components/Ui/Friend";
-import { BlockOutlined, DeleteOutline, EditOffOutlined, MoreVert } from "@mui/icons-material";
+import { FriendAvatar, FriendName } from "components/Ui/Friend";
+import { BlockOutlined, DeleteOutline, MoreVert } from "@mui/icons-material";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import Dropdown from "components/Ui/Dropdown";
 import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { IFriend } from "./types";
 
-function Friend() {
+interface FriendProps {
+  friend: IFriend;
+}
+function Friend({ friend }: FriendProps) {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
+
+  const { name, username, image, avatarColor } = friend;
+
   let avatarText: string | undefined;
 
-  // if (!image) {
-  //   avatarText = getFriendAvatarText(name || username);
-  // }
+  if (!image) {
+    avatarText = getFriendAvatarText(name || username);
+  }
   return (
     <>
       <Box sx={chatMessageStyles}>
-        <Image
-          src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667582834/jusTalk/dozj6zuzslllnkazqirh.jpg"
-          alt="friend"
-          width={40}
-          height={40}
-        />
-        {/* {!image && <FriendAvatar sx={{ bgcolor: avatarColor }}>{avatarText}</FriendAvatar>}{" "} */}
-        <FriendName className="friend-name">Earnestine Sears</FriendName>
+        {image && <Image src={image} alt="friend" width={40} height={40} />}
+        {!image && <FriendAvatar sx={{ bgcolor: avatarColor }}>{avatarText}</FriendAvatar>}{" "}
+        <FriendName className="friend-name">{name || username}</FriendName>
         <IconButton ref={anchorRef} onClick={handleToggle}>
           <MoreVert sx={{ color: "success.main", fontSize: "1.1rem" }} />
         </IconButton>
       </Box>
       <Dropdown openMenu={openMenu} handleClose={handleClose} anchor={anchorRef.current}>
-        <MenuItem>
-          <ListItemText>Edit</ListItemText>
-          <ListItemIcon>
-            <EditOffOutlined />
-          </ListItemIcon>
-        </MenuItem>
         <MenuItem>
           <ListItemText>Block</ListItemText>
           <ListItemIcon>

@@ -47,6 +47,7 @@ function Chat({ chat }: ChatProps) {
           color="primary"
           component="span"
           sx={{
+            visibility: newMessages >= 1 ? "visible" : "hidden",
             fontSize: ".7rem",
             backgroundColor: "common.softDark",
             width: "18px",
