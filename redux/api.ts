@@ -20,7 +20,7 @@ export const baseQueryWithReAuth = async (args: string | FetchArgs, api: any, ex
   if (result.error?.status === 403) {
     console.log("sending refresh token");
 
-    let refreshResult = await baseQuery("/", api, extraOptions);
+    let refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
 
     if (refreshResult?.data) {
       api.dispatch(setCredentials({ ...refreshResult.data }));
@@ -37,6 +37,6 @@ export const baseQueryWithReAuth = async (args: string | FetchArgs, api: any, ex
 };
 
 export const api = createApi({
-  baseQuery: baseQueryWithReAuth,
+  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: () => ({}),
 });

@@ -36,7 +36,7 @@ const authApi = api.injectEndpoints({
         }
       },
     }),
-    refresh: builder.mutation({
+    refresh: builder.mutation<any, void>({
       query: () => ({
         url: "/auth/refresh",
         method: "GET",
