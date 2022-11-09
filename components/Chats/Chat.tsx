@@ -1,21 +1,31 @@
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 import { chatMessageStyles, lineClamp1Styles } from "./styles";
-import { FriendName } from "components/Ui/Friend";
+import { FriendAvatar, FriendName } from "components/Ui/Friend";
+import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { IChat } from "./types";
 
-function Chat() {
+interface ChatProps {
+  chat: IChat;
+}
+
+function Chat({ chat }: ChatProps) {
+  const { name, image, username, newMessages, lastMessage, lastMessageDate, avatarColor } = chat;
+
+  let avatarText: string | undefined;
+  if (!image) {
+    avatarText = getFriendAvatarText(name || username);
+  }
   return (
     <Box sx={chatMessageStyles}>
-      <Box sx={{ display: "flex", alignItems: "center", img: { borderRadius: "50%" } }}>
-        <Image
-          src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667375697/jusTalk/zewq69s3crcubsawfsa9.jpg"
-          alt="user pic"
-          width={40}
-          height={40}
-        />
-      </Box>
+      {image && (
+        <Box sx={{ display: "flex", alignItems: "center", img: { borderRadius: "50%" } }}>
+          <Image src={image} alt="user pic" width={40} height={40} />
+        </Box>
+      )}
+      {!image && <FriendAvatar sx={{ bgcolor: avatarColor }}>{avatarText}</FriendAvatar>}
       <Box>
-        <FriendName className="friend-name">Katrina Winters</FriendName>
+        <FriendName className="friend-name">{name || username}</FriendName>
         <Typography
           variant="subtitle1"
           color="secondary"
@@ -25,12 +35,12 @@ function Chat() {
           }}
           className="chat-text"
         >
-          You are the best tohid!
+          {lastMessage}
         </Typography>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "end", marginLeft: "auto" }}>
         <Typography variant="subtitle1" component="span" color="secondary" sx={{ fontSize: ".7rem" }} className="text">
-          22:10
+          {lastMessageDate}
         </Typography>
         <Typography
           variant="subtitle1"
@@ -45,7 +55,7 @@ function Chat() {
           }}
           className="chat-text"
         >
-          3
+          {newMessages}
         </Typography>
       </Box>
     </Box>

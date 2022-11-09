@@ -7,6 +7,7 @@ import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import ChatMessage from "./Chat";
 import { chatMessageContainerStyles } from "./styles";
+import { chats } from "./data";
 
 function Chats() {
   const [openAddFriend, setOpenAddFriend] = useState(false);
@@ -29,11 +30,9 @@ function Chats() {
             RECENT
           </Typography>
           <Box sx={chatMessageContainerStyles}>
-            {Array(15)
-              .fill(null)
-              .map((item, index) => (
-                <ChatMessage key={index} />
-              ))}
+            {chats.map((chat) => (
+              <ChatMessage key={chat.id} chat={chat} />
+            ))}
           </Box>
         </Box>
       </Box>

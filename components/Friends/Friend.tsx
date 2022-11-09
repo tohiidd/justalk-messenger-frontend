@@ -5,10 +5,15 @@ import { FriendName } from "components/Ui/Friend";
 import { BlockOutlined, DeleteOutline, EditOffOutlined, MoreVert } from "@mui/icons-material";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import Dropdown from "components/Ui/Dropdown";
+import { getFriendAvatarText } from "utils/getFriendAvatar";
 
 function Friend() {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
+  let avatarText: string | undefined;
 
+  // if (!image) {
+  //   avatarText = getFriendAvatarText(name || username);
+  // }
   return (
     <>
       <Box sx={chatMessageStyles}>
@@ -18,7 +23,7 @@ function Friend() {
           width={40}
           height={40}
         />
-        {/* <FriendAvatar >G</FriendAvatar> */}
+        {/* {!image && <FriendAvatar sx={{ bgcolor: avatarColor }}>{avatarText}</FriendAvatar>}{" "} */}
         <FriendName className="friend-name">Earnestine Sears</FriendName>
         <IconButton ref={anchorRef} onClick={handleToggle}>
           <MoreVert sx={{ color: "success.main", fontSize: "1.1rem" }} />

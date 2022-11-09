@@ -44,7 +44,7 @@ export default function SignUp() {
 
   const onSubmit = async (values: IValues) => {
     console.log(values);
-    const user = { email: values.email, username: values.username, password: values.password };
+    const user = { email: values.email, username: values.username, password: values.password,avatarColor:'' };
     try {
       const res = await signup(user).unwrap();
       console.log(res);
