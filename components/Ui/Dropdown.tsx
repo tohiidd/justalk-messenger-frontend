@@ -4,7 +4,7 @@ import { ClickAwayListener, Grow, MenuList, Paper, Popper } from "@mui/material"
 interface DropdownProps extends PropsWithChildren {
   openMenu: boolean;
   handleClose: (event: Event | SyntheticEvent) => void;
-  anchor: any;
+  anchor: HTMLButtonElement;
 }
 
 function Dropdown({ openMenu, handleClose, anchor, children }: DropdownProps) {

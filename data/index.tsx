@@ -10,6 +10,7 @@ import Chats from "components/Chats/Chats";
 import Friends from "components/Friends/Friends";
 import Groups from "components/Groups/Groups";
 import Profile from "components/Profile/Profile";
+import Settings from "components/Settings/Settings";
 
 export const asideMenuTabs = [
   {
@@ -47,6 +48,6 @@ export const asideMenuTabs = [
     id: "5",
     title: "Settings",
     icon: <SettingsOutlined />,
-    panel: <></>,
+    panel: <Settings />,
   },
 ];

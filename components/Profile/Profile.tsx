@@ -1,19 +1,11 @@
 import Image from "next/image";
-import {
-  EmailOutlined,
-  HelpOutline,
-  InfoOutlined,
-  LocationOnOutlined,
-  MoreVert,
-  PersonOutline,
-  SettingsOutlined,
-} from "@mui/icons-material";
-import { Box, IconButton, ListItemIcon, ListItemText, MenuItem, Typography } from "@mui/material";
+import { EmailOutlined, LocationOnOutlined, MoreVert, PersonOutline } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
 import { TabPanelTitle } from "components/Ui/TabPanel";
 import { AvatarWrapper } from "components/Ui/AsideMenu";
 import { headerStyles } from "./styles";
-import Dropdown from "../Ui/Dropdown";
 import useDisplayMenu from "hooks/useDisplayMenu";
+import ProfileDropdown from "../Dropdowns/ProfileDropdown";
 
 export default function Profile() {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
@@ -39,26 +31,7 @@ export default function Profile() {
             </IconButton>
           </Box>
         </Box>
-        <Dropdown openMenu={openMenu} handleClose={handleClose} anchor={anchorRef.current}>
-          <MenuItem>
-            <ListItemText>Info</ListItemText>
-            <ListItemIcon>
-              <InfoOutlined />
-            </ListItemIcon>
-          </MenuItem>
-          <MenuItem>
-            <ListItemText>Settings</ListItemText>
-            <ListItemIcon>
-              <SettingsOutlined />
-            </ListItemIcon>
-          </MenuItem>
-          <MenuItem>
-            <ListItemText>Help</ListItemText>
-            <ListItemIcon>
-              <HelpOutline />
-            </ListItemIcon>
-          </MenuItem>
-        </Dropdown>
+        <ProfileDropdown openMenu={openMenu} handleClose={handleClose} anchorRef={anchorRef!} />
       </Box>
       <Box sx={{ borderBottom: "1px solid", borderBottomColor: "common.grey100", pb: "20px" }}>
         <AvatarWrapper

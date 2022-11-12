@@ -7,6 +7,7 @@ declare module "@mui/material/styles/createPalette" {
     grey100: string;
     grey200: string;
     softDark: string;
+    yellow: string;
   }
 }
 
@@ -23,6 +24,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             grey200: "#797c8c",
             black: "#495057",
             softDark: "rgba(52,58,64,.18)",
+            yellow: "#ffd166",
           },
           primary: { main: "#5a636c" },
           secondary: { main: "#8f9198" },
@@ -38,6 +40,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             grey200: "#8f9198",
             black: "#adb5bd",
             softDark: "rgba(143,145,152,.18)",
+            yellow: "#ffd166",
           },
           primary: { main: "#adb5bd" },
           secondary: { main: "#797c8c" },

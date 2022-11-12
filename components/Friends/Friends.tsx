@@ -10,6 +10,7 @@ import Friend from "./Friend";
 import { friends } from "./data";
 import { getAlphabeticalOrder } from "utils/getAlphabeticalOrder";
 import { friendsTitleStyles } from "./styles";
+import { IFriend } from "./types";
 
 function Friends() {
   const [openAddFriend, setOpenAddFriend] = useState(false);
@@ -35,7 +36,7 @@ function Friends() {
           {orderedFriends.map(([key, values]: any) => (
             <Box key={key}>
               <Box sx={friendsTitleStyles}>{key}</Box>
-              {values.map((friend: any) => (
+              {values.map((friend: IFriend) => (
                 <Friend key={friend.id} friend={friend} />
               ))}
             </Box>
