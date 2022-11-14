@@ -72,6 +72,7 @@ export default function Home() {
         <Box
           component="section"
           sx={{
+            display: { xs: "none", md: "block" },
             width: "100%",
             backgroundImage:
               "url(https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667645283/jusTalk/eoojdubgmbo3jcnmssqc.png)",

@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { Check, Edit, ExpandMore, Person } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, FormControl, FormLabel, TextField, Typography } from "@mui/material";
-import { SettingAccordion } from "components/Ui/Accordions";
+import { SettingAccordion } from "components/Settings/Ui/Accordions";
 import { AccordionProps } from "../types";
 import { infoInputStyles, infoLabelStyles } from "../styles";
 import { AddContactBtn } from "components/Ui/TabPanel";
@@ -29,7 +29,7 @@ function PersonalInfo({ expanded, handleChange }: AccordionProps) {
   }, [editMode]);
   return (
     <SettingAccordion expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
-      <AccordionSummary expandIcon={<ExpandMore />} aria-controls="panel1bh-content" id="panel1bh-header">
+      <AccordionSummary expandIcon={<ExpandMore />}>
         <Person sx={{ fontSize: "1.1rem" }} />
         <Typography className="summary-title">Personal info</Typography>
       </AccordionSummary>

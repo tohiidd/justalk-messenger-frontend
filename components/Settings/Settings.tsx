@@ -9,6 +9,10 @@ import { avatarWrapperStyles, iconButtonStyles, statusTitleStyles } from "./styl
 import useDisplayMenu from "hooks/useDisplayMenu";
 import StatusDropdown from "../Dropdowns/StatusDropdown";
 import PersonalInfo from "./Accordions/PersonalInfo";
+import Privacy from "./Accordions/Privacy";
+import { chatMessageContainerStyles } from "components/Chats/styles";
+import Security from "./Accordions/Security";
+import Help from "./Accordions/Help";
 
 export default function Profile() {
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -81,8 +85,11 @@ export default function Profile() {
       </Box>
       <StatusDropdown openMenu={openMenu} handleClose={handleClose} anchorRef={anchorRef!} />
 
-      <Box>
+      <Box sx={{ ...chatMessageContainerStyles, height: { xs: "calc(100vh - 345px)", md: "calc(100vh - 300px)" } }}>
         <PersonalInfo expanded={expanded} handleChange={handleChange} />
+        <Privacy expanded={expanded} handleChange={handleChange} />
+        <Security expanded={expanded} handleChange={handleChange} />
+        <Help expanded={expanded} handleChange={handleChange} />
       </Box>
     </>
   );

@@ -13,8 +13,8 @@ export const chatMessageContainerStyles = {
     " linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
   WebkitMaskSize: " 100% 20000px",
   WebkitMaskPosition: " left bottom",
-  transition: " mask-position 0.3s, -webkit-mask-position 0.3s",
-  overflowY: "scroll",
+  transition: " all 0.3s, -webkit-mask-position 0.3s",
+  overflowY: "overlay",
   "&::-webkit-scrollbar": { width: "10px" },
   "&::-webkit-scrollbar-track": { backgroundColor: "transparent", borderRadius: "100px" },
   "&::-webkit-scrollbar-thumb": {
@@ -22,7 +22,7 @@ export const chatMessageContainerStyles = {
     borderRadius: "100px",
   },
   "&:hover": {
-    WebkitMaskPosition: "left top",
+    // WebkitMaskPosition: "left top",
   },
 };
 export const chatMessageStyles = {
