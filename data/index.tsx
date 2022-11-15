@@ -6,6 +6,7 @@ import {
   PhoneOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
+import Calls from "components/Calls/Calls";
 import Chats from "components/Chats/Chats";
 import Friends from "components/Friends/Friends";
 import Groups from "components/Groups/Groups";
@@ -41,7 +42,7 @@ export const asideMenuTabs = [
     id: "4",
     title: "Calls",
     icon: <PhoneOutlined />,
-    panel: <></>,
+    panel: <Calls />,
   },
 
   {

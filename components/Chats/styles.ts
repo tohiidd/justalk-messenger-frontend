@@ -6,23 +6,33 @@ export const lineClamp1Styles = {
 };
 export const chatMessageContainerStyles = {
   height: { xs: "calc(100vh - 235px )", md: "calc(100vh - 175px )" },
-  maskImage: "linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
-  maskSize: "100% 20000px",
-  maskPosition: " left bottom",
-  WebkitMaskImage:
-    " linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
-  WebkitMaskSize: " 100% 20000px",
-  WebkitMaskPosition: " left bottom",
-  transition: " all 0.3s, -webkit-mask-position 0.3s",
+  // maskImage: "linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
+  // maskSize: "100% 20000px",
+  // maskPosition: " left bottom",
+  // WebkitMaskImage:
+  //   " linear-gradient(to top, transparent, black), linear-gradient(to left, transparent 17px, black 17px)",
+  // WebkitMaskSize: " 100% 20000px",
+  // WebkitMaskPosition: " left bottom",
+  // transition: " all 0.3s, -webkit-mask-position 0.3s",
   overflowY: "overlay",
   "&::-webkit-scrollbar": { width: "10px" },
-  "&::-webkit-scrollbar-track": { backgroundColor: "transparent", borderRadius: "100px" },
-  "&::-webkit-scrollbar-thumb": {
-    backgroundColor: "secondary.main",
+  "&::-webkit-scrollbar-track": {
+    backgroundColor: "transparent",
     borderRadius: "100px",
+    transition: "background-color 200ms ease-in-out",
   },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "transparent",
+    borderRadius: "100px",
+    transition: "background-color 500ms  linear",
+  },
+  transition: "all 200ms ease-in-out",
   "&:hover": {
     // WebkitMaskPosition: "left top",
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: "secondary.main",
+      borderRadius: "100px",
+    },
   },
 };
 export const chatMessageStyles = {

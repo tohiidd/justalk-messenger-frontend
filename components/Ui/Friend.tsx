@@ -24,4 +24,5 @@ export const FriendAvatar = styled(Box)(({ theme }) => ({
   fontWeight: 500,
   textTransform: "uppercase",
   backgroundColor: "#ffd166",
+  aspectRatio: "1",
 }));
