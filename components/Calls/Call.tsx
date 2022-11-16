@@ -8,9 +8,10 @@ import { ICall } from "./types";
 
 interface CallProps {
   call: ICall;
+  handleToggle: (type: string, id: string) => () => void;
 }
-function Call({ call }: CallProps) {
-  const { name, username, avatarColor, image, date, callType, videoCall, duration } = call;
+function Call({ call, handleToggle }: CallProps) {
+  const { id, name, username, avatarColor, image, date, callType, videoCall, duration } = call;
   let avatarText: string | undefined;
   if (!image) {
     avatarText = getFriendAvatarText(name || username);
@@ -53,7 +54,13 @@ function Call({ call }: CallProps) {
         <Typography component="span" sx={{ color: "common.grey200", fontSize: ".7rem", fontWeight: 500 }}>
           {duration}
         </Typography>
-        <IconButton>{videoCall ? <VideocamOutlined color="success" /> : <Phone color="success" />}</IconButton>
+        <IconButton onClick={handleToggle(videoCall ? "video" : "voice", id)}>
+          {videoCall ? (
+            <VideocamOutlined color="success" fontSize="small" />
+          ) : (
+            <Phone color="success" fontSize="small" />
+          )}
+        </IconButton>
       </Box>
     </Box>
   );

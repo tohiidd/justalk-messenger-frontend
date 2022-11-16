@@ -26,3 +26,11 @@ export const buttonsWrapperStyles = {
   borderTop: "1px solid",
   borderTopColor: "common.grey100",
 };
+
+export const callIconTextStyles = {
+  fontSize: ".65rem",
+  color: "common.grey200",
+  fontWeight: 500,
+  textAlign: "center",
+  mt: "5px",
+};

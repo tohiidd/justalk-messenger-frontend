@@ -15,23 +15,50 @@ export const chatMessageContainerStyles = {
   // WebkitMaskPosition: " left bottom",
   // transition: " all 0.3s, -webkit-mask-position 0.3s",
   overflowY: "overlay",
+  // backgroundColor: "rgba(0,0,0,0)",
+  // WebkitBackgroundClip: "text",
+  // transition: " background-color .8s",
+  // overflowY: "overlay",
   "&::-webkit-scrollbar": { width: "10px" },
   "&::-webkit-scrollbar-track": {
     backgroundColor: "transparent",
     borderRadius: "100px",
-    transition: "background-color 200ms ease-in-out",
+    // transition: "background-color 200ms ease-in-out",
   },
   "&::-webkit-scrollbar-thumb": {
-    backgroundColor: "transparent",
-    borderRadius: "100px",
-    transition: "background-color 500ms  linear",
+    // backgroundColor: "inherit",
+
+    // backgroundColor: "secondary.main",
+    // opacity: 0,
+    // borderRadius: "100px",
+    // WebkitTransition: "all 500ms ",
+    animation: " fadeOut .5s ease-in-out forwards",
+    "@keyframes fadeOut": {
+      "0%": {
+        backgroundColor: "secondary.main",
+      },
+      "100%": {
+        backgroundColor: "transparent",
+      },
+    },
   },
-  transition: "all 200ms ease-in-out",
+  // WebkitTransition: "all 200ms ease-in-out",
   "&:hover": {
+    // backgroundColor: " rgba(0,0,0,0.18)",
     // WebkitMaskPosition: "left top",
     "&::-webkit-scrollbar-thumb": {
-      backgroundColor: "secondary.main",
-      borderRadius: "100px",
+      //   backgroundColor: "secondary.main",
+      //   // opacity: 1,
+      //   borderRadius: "100px",
+      animation: " fadeIn .5s ease-in-out forwards",
+      "@keyframes fadeIn": {
+        "0%": {
+          backgroundColor: "transparent",
+        },
+        "100%": {
+          backgroundColor: "secondary.main",
+        },
+      },
     },
   },
 };
