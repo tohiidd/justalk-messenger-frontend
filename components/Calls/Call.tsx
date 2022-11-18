@@ -4,6 +4,7 @@ import { lineClamp1Styles } from "components/Chats/styles";
 import { FriendAvatar } from "components/Ui/Friend";
 import Image from "next/image";
 import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { callWrapperStyles } from "./styles";
 import { ICall } from "./types";
 
 interface CallProps {
@@ -17,17 +18,7 @@ function Call({ call, handleToggle }: CallProps) {
     avatarText = getFriendAvatarText(name || username);
   }
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        p: "6px 24px",
-        cursor: "pointer",
-        borderTop: "1px solid",
-        borderTopColor: "common.grey100",
-      }}
-    >
+    <Box sx={callWrapperStyles}>
       {image && (
         <Box sx={{ display: "flex", alignItems: "center", img: { borderRadius: "50%" } }}>
           <Image src={image} alt="user pic" width={30} height={30} />

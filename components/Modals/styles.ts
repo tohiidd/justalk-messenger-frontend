@@ -34,3 +34,16 @@ export const callIconTextStyles = {
   textAlign: "center",
   mt: "5px",
 };
+
+export const endCallButtonStyles = {
+  backgroundColor: "error.main",
+  color: "#fff",
+  border: "6px solid",
+  borderColor: "common.white",
+  padding: "15px",
+  "&:hover": {
+    backgroundColor: "#cb3c5e",
+  },
+};
+
+export const iconButtonStyles = { backgroundColor: "common.grey100", "&:hover": { backgroundColor: "common.grey100" } };
