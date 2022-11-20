@@ -30,7 +30,7 @@ function AuthLayout({ children }: PropsWithChildren) {
             sx={{ display: "flex", justifyContent: { xs: "center", md: "start" }, alignItems: "center", gap: "16px" }}
           >
             <Chat sx={{ color: "#fff", fontSize: "1.8rem" }} />
-            <Typography component="h1" sx={{ fontSize: "1.4rem", fontWeight: 500 }}>
+            <Typography component="h1" sx={{ color: "#fff", fontSize: "1.4rem", fontWeight: 500 }}>
               JusTalk
             </Typography>
           </Box>

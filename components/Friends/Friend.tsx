@@ -5,7 +5,7 @@ import { FriendAvatar, FriendName } from "components/Ui/Friend";
 import { BlockOutlined, DeleteOutline, MoreVert } from "@mui/icons-material";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import Dropdown from "components/Ui/Dropdown";
-import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { getUserAvatarText } from "utils/getUserAvatar";
 import { IFriend } from "./types";
 
 interface FriendProps {
@@ -19,7 +19,7 @@ function Friend({ friend }: FriendProps) {
   let avatarText: string | undefined;
 
   if (!image) {
-    avatarText = getFriendAvatarText(name || username);
+    avatarText = getUserAvatarText(name || username);
   }
   return (
     <>
@@ -31,7 +31,7 @@ function Friend({ friend }: FriendProps) {
           <MoreVert sx={{ color: "success.main", fontSize: "1.1rem" }} />
         </IconButton>
       </Box>
-      <Dropdown openMenu={openMenu} handleClose={handleClose} anchor={anchorRef.current}>
+      <Dropdown openMenu={openMenu} handleClose={handleClose} anchor={anchorRef.current!}>
         <MenuItem>
           <ListItemText>Block</ListItemText>
           <ListItemIcon>

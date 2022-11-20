@@ -5,10 +5,20 @@ import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
 import Link from "next/link";
-import { DangerAlert, ErrorLabel, FormSubtitle, FormTitle, Label, visibleIconStyles } from "components/Ui/Form";
+import {
+  DangerAlert,
+  ErrorLabel,
+  FormSubtitle,
+  FormTitle,
+  Label,
+  SuccessAlert,
+  visibleIconStyles,
+} from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { useSignupMutation } from "redux/auth/authApi";
+import { useRegisterMutation } from "redux/auth/authApi";
+import { useRouter } from "next/router";
+import { getUserAvatarColor } from "utils/getUserAvatar";
 
 interface IValues {
   email: string;
@@ -36,21 +46,25 @@ export const registerSchema = yup.object().shape({
     .required("Please confirm your password"),
 });
 
-export default function SignUp() {
+export default function Register() {
   const [showPassword, setShowPassword] = useState({ main: false, confirm: false });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const [signup] = useSignupMutation();
+  const router = useRouter();
+
+  const [register, { isSuccess, isError }] = useRegisterMutation();
 
   const onSubmit = async (values: IValues) => {
-    console.log(values);
-    const user = { email: values.email, username: values.username, password: values.password,avatarColor:'' };
+    const avatarColor = getUserAvatarColor();
+    const user = { email: values.email, username: values.username, password: values.password, avatarColor };
     try {
-      const res = await signup(user).unwrap();
+      const res = await register(user).unwrap();
       console.log(res);
+      setSubmitMessage(res.message);
+      router.replace("/");
     } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.message);
+      setSubmitMessage(error.message);
     }
   };
 
@@ -70,9 +84,10 @@ export default function SignUp() {
       <form onSubmit={handleSubmit}>
         <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Register Account</FormTitle>
-          <FormSubtitle sx={{ mt: "0px !important" }}>Get your free jusTalk account now.</FormSubtitle>
+          <FormSubtitle sx={{ mt: "4px !important" }}>Get your free jusTalk account now.</FormSubtitle>
         </Box>
-        {errorMessage && <DangerAlert>{errorMessage}</DangerAlert>}
+        {isError && <DangerAlert>{submitMessage}</DangerAlert>}
+        {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>}
         <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%" }}>
             <Label>Email</Label>
@@ -149,7 +164,9 @@ export default function SignUp() {
           </Typography>
         </Box>
         <Box>
-          <FormButton>{isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Register"}</FormButton>
+          <FormButton type="submit">
+            {isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Register"}
+          </FormButton>
         </Box>
         <Box>
           <FormSubtitle>

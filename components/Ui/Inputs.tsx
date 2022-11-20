@@ -23,4 +23,7 @@ export const Input = styled(OutlinedInput)(({ theme }) => ({
       borderColor: `${theme.palette.error.main} !important`,
     },
   },
+  "& input:-internal-autofill-previewed , input:-internal-autofill-selected": {
+    WebkitBoxShadow: " 0 0 0 30px white inset !important",
+  },
 }));

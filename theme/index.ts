@@ -3,6 +3,7 @@ import { PaletteMode, ThemeOptions } from "@mui/material";
 declare module "@mui/material/styles/createPalette" {
   interface CommonColors {
     lightGreen: string;
+    softWhite: string;
     grey: string;
     grey100: string;
     grey200: string;
@@ -18,6 +19,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       ? {
           common: {
             white: "#fff",
+            softWhite: "#ffffff0d",
             lightGreen: "#4eac6d33",
             grey: "#f2f2f2",
             grey100: "#f6f6f9",
@@ -34,6 +36,7 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
       : {
           common: {
             white: "#262626",
+            softWhite: "#2e2e2e80",
             lightGreen: "#4eac6d33",
             grey: "#2e2e2e",
             grey100: "#2e2e2e",

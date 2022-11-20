@@ -100,3 +100,12 @@ export const DangerAlert = styled(Box)(({ theme }) => ({
   fontSize: ".8rem",
   fontWeight: 500,
 }));
+export const SuccessAlert = styled(Box)(({ theme }) => ({
+  color: "#048060",
+  backgroundColor: "#cdf7ec",
+  border: "1px solid #b4f3e3",
+  borderRadius: "4px",
+  padding: "12px 20px",
+  fontSize: ".8rem",
+  fontWeight: 500,
+}));

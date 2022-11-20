@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { lineClamp1Styles } from "components/Chats/styles";
 import { FriendAvatar } from "components/Ui/Friend";
 import Image from "next/image";
-import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { getFriendAvatarText } from "utils/getUserAvatar";
 import { callWrapperStyles } from "./styles";
 import { ICall } from "./types";
 

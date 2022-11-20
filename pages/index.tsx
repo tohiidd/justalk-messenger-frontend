@@ -8,6 +8,7 @@ import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "comp
 import { asideMenuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import GetStartedConversation from "components/Conversation/GetStartedConversation";
+import Conversation from "components/Conversation/Conversation";
 
 export default function Home() {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -80,6 +81,7 @@ export default function Home() {
           }}
         >
           <GetStartedConversation />
+          {/* <Conversation /> */}
         </Box>
       </Box>
     </section>

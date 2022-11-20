@@ -1,8 +1,9 @@
 {
   "name": "justalk-messenger",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "proxy": "http://localhost:5000",
   "private": true,
-  "scripts": {
+    "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

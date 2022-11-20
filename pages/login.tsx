@@ -12,11 +12,15 @@ import {
   FormSubtitle,
   FormTitle,
   Label,
+  SuccessAlert,
   visibleIconStyles,
 } from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { useLoginMutation } from "redux/auth/authApi";
+import { useRouter } from "next/router";
+import { setCredentials } from "redux/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 interface IValues {
   username: string;
@@ -30,19 +34,26 @@ export const loginSchema = yup.object().shape({
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const [login] = useLoginMutation();
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const [login, { isError, isSuccess }] = useLoginMutation();
 
   const onSubmit = async (values: IValues) => {
-    console.log(values);
     const user = { username: values.username, password: values.password };
     try {
       const res = await login(user).unwrap();
       console.log(res);
+      dispatch(setCredentials({ token: res.token, user }));
+      setSubmitMessage(res.message);
+      console.log(res.message);
+
+      router.replace("/");
     } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.message);
+      setSubmitMessage(error.message);
     }
   };
 
@@ -60,9 +71,10 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Welcome Back</FormTitle>
-          <FormSubtitle sx={{ mt: "0px !important" }}>Sign in to continue with JusTalk.</FormSubtitle>
+          <FormSubtitle sx={{ mt: "4px !important" }}>Sign in to continue with JusTalk.</FormSubtitle>
         </Box>
-        {errorMessage && <DangerAlert>{errorMessage}</DangerAlert>}
+        {isError && <DangerAlert>{submitMessage}</DangerAlert>}
+        {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>}
         <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
@@ -113,7 +125,9 @@ export default function Login() {
           />
         </Box>
         <Box>
-          <FormButton>{isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Login"}</FormButton>
+          <FormButton type="submit">
+            {isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Login"}
+          </FormButton>
         </Box>
         <Box>
           <FormSubtitle>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 import { chatMessageStyles, lineClamp1Styles } from "./styles";
 import { FriendAvatar, FriendName } from "components/Ui/Friend";
-import { getFriendAvatarText } from "utils/getFriendAvatar";
+import { getUserAvatarText } from "utils/getUserAvatar";
 import { IChat } from "./types";
 
 interface ChatProps {
@@ -14,7 +14,7 @@ function Chat({ chat }: ChatProps) {
 
   let avatarText: string | undefined;
   if (!image) {
-    avatarText = getFriendAvatarText(name || username);
+    avatarText = getUserAvatarText(name || username);
   }
   return (
     <Box sx={chatMessageStyles}>

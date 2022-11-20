@@ -3,9 +3,9 @@ import { logout, setCredentials } from "./authSlice";
 
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    signup: builder.mutation({
+    register: builder.mutation({
       query: (credentials) => ({
-        url: "/auth/signup",
+        url: "/users/create",
         method: "POST",
         body: credentials,
       }),
@@ -55,4 +55,4 @@ const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useLogoutMutation, useRefreshMutation, useSignupMutation } = authApi;
+export const { useLoginMutation, useLogoutMutation, useRefreshMutation, useRegisterMutation } = authApi;

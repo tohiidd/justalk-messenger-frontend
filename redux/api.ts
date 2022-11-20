@@ -3,7 +3,7 @@ import { setCredentials } from "./auth/authSlice";
 import { RootState } from "./store";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://localhost:5000",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -26,9 +26,6 @@ export const baseQueryWithReAuth = async (args: string | FetchArgs, api: any, ex
       api.dispatch(setCredentials({ ...refreshResult.data }));
       result = await baseQuery(args, api, extraOptions);
     } else {
-      if (refreshResult?.error?.status === 403) {
-        //  refreshResult?.error?.data!.message = "Your login has expired.";
-      }
       return refreshResult;
     }
   }
@@ -37,6 +34,6 @@ export const baseQueryWithReAuth = async (args: string | FetchArgs, api: any, ex
 };
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
+  baseQuery: baseQueryWithReAuth,
   endpoints: () => ({}),
 });
