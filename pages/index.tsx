@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent, useContext } from "react";
+import { useState, useEffect, SyntheticEvent, useContext } from "react";
 import Image from "next/image";
 import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -9,10 +9,16 @@ import { asideMenuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import GetStartedConversation from "components/Conversation/GetStartedConversation";
 import Conversation from "components/Conversation/Conversation";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "redux/auth/authSlice";
+import cookie from "cookie";
+import jwt from "jwt-decode";
+import { GetServerSidePropsContext } from "next";
 
-export default function Home() {
+export default function Home({ token, user }: any) {
   const [selectedTab, setSelectedTab] = useState(1);
 
+  const dispatch = useDispatch();
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
   const { toggleColorMode } = useContext(ColorModeContext);
@@ -22,6 +28,11 @@ export default function Home() {
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
   };
+
+  useEffect(() => {
+    dispatch(setCredentials({ token, user }));
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <section>
@@ -86,4 +97,32 @@ export default function Home() {
       </Box>
     </section>
   );
+}
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const { reftoken } = cookie.parse(req.headers.cookie || "");
+
+  const data = await fetch("http://localhost:5000/auth/refresh", {
+    method: "GET",
+    headers: {
+      Cookie: `reftoken=${reftoken}`,
+    },
+  }).then((res) => res.json());
+
+  if (!data.success) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const { id } = jwt(reftoken) as { id: string };
+
+  const userData = await fetch(`http://localhost:5000/users?id=${id}`).then((res) => res.json());
+
+  return {
+    props: { token: data.data.accessToken, user: userData.data },
+  };
 }
