@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "proxy": "http://localhost:5000",
   "private": true,
-    "scripts": {
+  "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -16,7 +16,10 @@
     "@mui/material": "^5.10.11",
     "@mui/styled-engine-sc": "^5.10.6",
     "@reduxjs/toolkit": "^1.9.0",
+    "@types/cookie": "^0.5.1",
+    "cookie": "^0.5.0",
     "formik": "^2.2.9",
+    "jwt-decode": "^3.1.2",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { GetServerSidePropsContext } from "next";
 import * as yup from "yup";
 import { Box, CircularProgress, FormControl, FormControlLabel, IconButton } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
-import Link from "next/link";
 import {
   BpCheckBox,
   DangerAlert,
@@ -21,6 +21,8 @@ import { useLoginMutation } from "redux/auth/authApi";
 import { useRouter } from "next/router";
 import { setCredentials } from "redux/auth/authSlice";
 import { useDispatch } from "react-redux";
+import Link from "next/link";
+import cookie from "cookie";
 
 interface IValues {
   username: string;
@@ -46,14 +48,12 @@ export default function Login() {
     try {
       const res = await login(user).unwrap();
       console.log(res);
-      dispatch(setCredentials({ token: res.token, user }));
+      dispatch(setCredentials({ token: res.data.token, user: res.data.user }));
       setSubmitMessage(res.message);
-      console.log(res.message);
-
       router.replace("/");
     } catch (error: any) {
       console.log(error);
-      setSubmitMessage(error.message);
+      setSubmitMessage(error.data.message);
     }
   };
 
@@ -137,4 +137,28 @@ export default function Login() {
       </form>
     </AuthLayout>
   );
+}
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const { reftoken } = cookie.parse(req.headers.cookie || "");
+
+  const data = await fetch("http://localhost:5000/auth/refresh", {
+    method: "GET",
+    headers: {
+      Cookie: `reftoken=${reftoken}`,
+    },
+  }).then((res) => res.json());
+
+  if (data.success) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }

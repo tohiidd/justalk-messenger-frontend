@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GetServerSidePropsContext } from "next";
 import * as yup from "yup";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
@@ -19,6 +20,9 @@ import { useFormik } from "formik";
 import { useRegisterMutation } from "redux/auth/authApi";
 import { useRouter } from "next/router";
 import { getUserAvatarColor } from "utils/getUserAvatar";
+import cookie from "cookie";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "redux/auth/authSlice";
 
 interface IValues {
   email: string;
@@ -51,6 +55,7 @@ export default function Register() {
   const [submitMessage, setSubmitMessage] = useState("");
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [register, { isSuccess, isError }] = useRegisterMutation();
 
@@ -60,11 +65,12 @@ export default function Register() {
     try {
       const res = await register(user).unwrap();
       console.log(res);
+      dispatch(setCredentials({ token: res.token, user }));
       setSubmitMessage(res.message);
       router.replace("/");
     } catch (error: any) {
       console.log(error);
-      setSubmitMessage(error.message);
+      setSubmitMessage(error.data.message);
     }
   };
 
@@ -176,4 +182,28 @@ export default function Register() {
       </form>
     </AuthLayout>
   );
+}
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  const { reftoken } = cookie.parse(req.headers.cookie || "");
+
+  const data = await fetch("http://localhost:5000/auth/refresh", {
+    method: "GET",
+    headers: {
+      Cookie: `reftoken=${reftoken}`,
+    },
+  }).then((res) => res.json());
+
+  if (data.success) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
