@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
 import { AsideMenu, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/AsideMenu";
-import { asideMenuTabs } from "data";
+import { menuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import GetStartedConversation from "components/Conversation/GetStartedConversation";
 import Conversation from "components/Conversation/Conversation";
@@ -22,8 +22,6 @@ export default function Home({ token, user }: any) {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"));
   const { toggleColorMode } = useContext(ColorModeContext);
-
-  const menuTabs = asideMenuTabs.filter(({ title }) => (isMd ? title : title !== "Profile"));
 
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
@@ -50,7 +48,11 @@ export default function Home({ token, user }: any) {
             aria-label="AsideMenu tabs "
           >
             {menuTabs.map(({ id, title, icon }) => (
-              <AsideTab key={id} icon={<DarkTooltip title={title}>{icon}</DarkTooltip>} />
+              <AsideTab
+                key={id}
+                icon={<DarkTooltip title={title}>{icon}</DarkTooltip>}
+                sx={{ display: !isMd && id === 0 ? "none" : "inline-flex" }}
+              />
             ))}
           </AsideTabs>
           <Box
@@ -68,8 +70,8 @@ export default function Home({ token, user }: any) {
           <Avatar setSelectedTab={setSelectedTab} />
         </AsideMenu>
         <section>
-          {menuTabs.map(({ id, panel }, index) => (
-            <TabPanel key={id} value={selectedTab} index={index}>
+          {menuTabs.map(({ id, panel }) => (
+            <TabPanel key={id} value={selectedTab} index={id}>
               {panel}
             </TabPanel>
           ))}

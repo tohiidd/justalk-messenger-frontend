@@ -4,7 +4,9 @@ import { AvatarWrapper } from "components/Ui/AsideMenu";
 import Dropdown from "components/Ui/Dropdown";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/router";
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
+import { useLogoutMutation } from "redux/auth/authApi";
 
 interface AvatarProps {
   setSelectedTab: Dispatch<SetStateAction<number>>;
@@ -13,6 +15,24 @@ interface AvatarProps {
 function Avatar({ setSelectedTab }: AvatarProps) {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
 
+  const router = useRouter();
+
+  const [logout] = useLogoutMutation();
+
+  const handleTabToggle = (event: Event | SyntheticEvent, newTab: number) => {
+    setSelectedTab(newTab);
+    handleClose(event);
+  };
+  const handleLogout = async () => {
+    try {
+      const res = await logout().unwrap();
+      console.log(res);
+
+      router.replace("/logout");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <AvatarWrapper onClick={handleToggle} ref={anchorRef}>
@@ -24,13 +44,13 @@ function Avatar({ setSelectedTab }: AvatarProps) {
         />
       </AvatarWrapper>
       <Dropdown openMenu={openMenu} handleClose={handleClose} anchor={anchorRef.current!}>
-        <MenuItem onClick={() => setSelectedTab(0)}>
+        <MenuItem onClick={(event) => handleTabToggle(event, 0)}>
           <ListItemText>Profile</ListItemText>
           <ListItemIcon>
             <AccountCircleOutlined />
           </ListItemIcon>
         </MenuItem>
-        <MenuItem onClick={() => setSelectedTab(5)}>
+        <MenuItem onClick={(event) => handleTabToggle(event, 0)}>
           <ListItemText>Settings</ListItemText>
           <ListItemIcon>
             <SettingsOutlined />
@@ -42,7 +62,7 @@ function Avatar({ setSelectedTab }: AvatarProps) {
             <LockOutlined />
           </ListItemIcon>
         </MenuItem>
-        <MenuItem sx={{ marginTop: "6px" }}>
+        <MenuItem sx={{ marginTop: "6px" }} onClick={handleLogout}>
           <ListItemText>Log out</ListItemText>
           <ListItemIcon>
             <LogoutOutlined />
