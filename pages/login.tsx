@@ -79,6 +79,7 @@ export default function Login() {
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
             <Input
+              type="text"
               placeholder="Enter Username"
               id="username"
               value={values.username}

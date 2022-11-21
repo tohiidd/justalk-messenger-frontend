@@ -7,7 +7,7 @@ import { AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
 import { headerStyles } from "../Profile/styles";
 import { avatarWrapperStyles, iconButtonStyles, statusTitleStyles } from "./styles";
 import useDisplayMenu from "hooks/useDisplayMenu";
-import StatusDropdown from "../Dropdowns/StatusDropdown";
+import StatusDropdown from "./StatusDropdown";
 import PersonalInfo from "./Accordions/PersonalInfo";
 import Privacy from "./Accordions/Privacy";
 import { chatMessageContainerStyles } from "components/Chats/styles";

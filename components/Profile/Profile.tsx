@@ -5,7 +5,7 @@ import { TabPanelTitle } from "components/Ui/TabPanel";
 import { AvatarWrapper } from "components/Ui/AsideMenu";
 import { headerStyles } from "./styles";
 import useDisplayMenu from "hooks/useDisplayMenu";
-import ProfileDropdown from "../Dropdowns/ProfileDropdown";
+import ProfileDropdown from "./ProfileDropdown";
 
 export default function Profile() {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();

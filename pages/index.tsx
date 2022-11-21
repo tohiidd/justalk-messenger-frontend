@@ -1,10 +1,9 @@
 import { useState, useEffect, SyntheticEvent, useContext } from "react";
-import Image from "next/image";
 import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
-import { AsideMenu, AsideTab, AsideTabs, AvatarWrapper, DarkTooltip } from "components/Ui/AsideMenu";
+import { AsideMenu, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/AsideMenu";
 import { asideMenuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import GetStartedConversation from "components/Conversation/GetStartedConversation";
@@ -14,6 +13,7 @@ import { setCredentials } from "redux/auth/authSlice";
 import cookie from "cookie";
 import jwt from "jwt-decode";
 import { GetServerSidePropsContext } from "next";
+import Avatar from "components/Avatar/Avatar";
 
 export default function Home({ token, user }: any) {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -65,14 +65,7 @@ export default function Home({ token, user }: any) {
               )}
             </DarkTooltip>
           </Box>
-          <AvatarWrapper>
-            <Image
-              src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667140257/jusTalk/krdtwxpkf3baznlehems.jpg"
-              alt="avatar"
-              width={30}
-              height={30}
-            />
-          </AvatarWrapper>
+          <Avatar setSelectedTab={setSelectedTab} />
         </AsideMenu>
         <section>
           {menuTabs.map(({ id, panel }, index) => (
