@@ -107,7 +107,7 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   if (!data.success) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/auth/login",
         permanent: false,
       },
     };

@@ -120,7 +120,7 @@ export const chats = [
     avatarColor: "#50a5f1",
   },
   {
-    id: "6",
+    id: "15",
     name: "Hendrix Martin",
     username: "Hendrix",
     image: "",

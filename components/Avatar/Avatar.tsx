@@ -28,7 +28,7 @@ function Avatar({ setSelectedTab }: AvatarProps) {
       const res = await logout().unwrap();
       console.log(res);
 
-      router.replace("/logout");
+      router.replace("/auth/logout");
     } catch (err) {
       console.log(err);
     }
@@ -50,7 +50,7 @@ function Avatar({ setSelectedTab }: AvatarProps) {
             <AccountCircleOutlined />
           </ListItemIcon>
         </MenuItem>
-        <MenuItem onClick={(event) => handleTabToggle(event, 0)}>
+        <MenuItem onClick={(event) => handleTabToggle(event, 5)}>
           <ListItemText>Settings</ListItemText>
           <ListItemIcon>
             <SettingsOutlined />

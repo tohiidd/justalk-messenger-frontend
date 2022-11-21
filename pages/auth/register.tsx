@@ -176,7 +176,7 @@ export default function Register() {
         </Box>
         <Box>
           <FormSubtitle>
-            Already have an account?<Link href="/login"> Login</Link>
+            Already have an account?<Link href="/auth/login"> Login</Link>
           </FormSubtitle>
         </Box>
       </form>

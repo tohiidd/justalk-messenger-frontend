@@ -3,7 +3,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import { lineClamp1Styles } from "components/Chats/styles";
 import { FriendAvatar } from "components/Ui/Friend";
 import Image from "next/image";
-import { getFriendAvatarText } from "utils/getUserAvatar";
+import { getUserAvatarText } from "utils/getUserAvatar";
 import { callWrapperStyles } from "./styles";
 import { ICall } from "./types";
 
@@ -15,7 +15,7 @@ function Call({ call, handleToggle }: CallProps) {
   const { id, name, username, avatarColor, image, date, callType, videoCall, duration } = call;
   let avatarText: string | undefined;
   if (!image) {
-    avatarText = getFriendAvatarText(name || username);
+    avatarText = getUserAvatarText(name || username);
   }
   return (
     <Box sx={callWrapperStyles}>

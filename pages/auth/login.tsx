@@ -132,7 +132,7 @@ export default function Login() {
         </Box>
         <Box>
           <FormSubtitle>
-            Don&apos;t have an account?<Link href="/register"> Register</Link>
+            Don&apos;t have an account?<Link href="/auth/register"> Register</Link>
           </FormSubtitle>
         </Box>
       </form>
