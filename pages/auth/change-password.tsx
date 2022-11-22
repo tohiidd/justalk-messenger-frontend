@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { AvatarWrapper } from "components/Ui/AsideMenu";
@@ -6,9 +7,9 @@ import { Input } from "components/Ui/Inputs";
 import Image from "next/image";
 import { useFormik } from "formik";
 import { FormButton, GreyButton } from "components/Ui/Buttons";
-import { useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { passwordSchema } from "utils/formikSchemas";
+import Link from "next/link";
 
 interface IValues {
   oldPassword: string;
@@ -67,6 +68,7 @@ function ChangePassword() {
             <Label>Old Password</Label>
             <Input
               placeholder="Enter old password"
+              type="password"
               id="oldPassword"
               value={values.oldPassword}
               onChange={handleChange}
@@ -113,7 +115,9 @@ function ChangePassword() {
           <FormButton type="submit" sx={{ width: "50%", minWidth: "unset" }}>
             {isSubmitting ? <CircularProgress sx={{ color: "#fff" }} size={30} /> : "Save"}
           </FormButton>
-          <GreyButton>Cancel</GreyButton>
+          <GreyButton LinkComponent={Link} href="/">
+            Cancel
+          </GreyButton>
         </Box>
       </form>
     </AuthLayout>

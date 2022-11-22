@@ -14,7 +14,7 @@ import {
   SuccessAlert,
   visibleIconStyles,
 } from "components/Ui/Form";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { CancelOutlined, CheckCircleOutline, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
 import { useRegisterMutation } from "redux/auth/authApi";
 import { useRouter } from "next/router";
@@ -23,6 +23,7 @@ import cookie from "cookie";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "redux/auth/authSlice";
 import { registerSchema } from "utils/formikSchemas";
+import { useGetUserMutation } from "redux/users/usersApi";
 
 interface IValues {
   email: string;
@@ -33,12 +34,28 @@ interface IValues {
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isUsernameUnique, setIsUsernameUnique] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const [register, { isSuccess, isError }] = useRegisterMutation();
+  const [getUser, { isLoading }] = useGetUserMutation();
+
+  const checkUniqueUsername = async () => {
+    try {
+      const res = await getUser(`username=${values.username}`).unwrap();
+      if (res.success) {
+        setIsUsernameUnique(false);
+      } else {
+        setIsUsernameUnique(true);
+      }
+    } catch (err) {
+      console.log(err);
+      setIsUsernameUnique(false);
+    }
+  };
 
   const onSubmit = async (values: IValues) => {
     const avatarColor = getUserAvatarColor();
@@ -90,14 +107,29 @@ export default function Register() {
           </FormControl>
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
-            <Input
-              placeholder="Enter Username"
-              id="username"
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors?.username && touched?.username ? "error" : ""}
-            />
+            <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+              <Input
+                sx={{ width: "100%", paddingRight: "30px" }}
+                placeholder="Enter Username"
+                id="username"
+                value={values.username}
+                onChange={handleChange}
+                onBlur={(e) => {
+                  handleBlur(e);
+                  checkUniqueUsername();
+                }}
+                className={errors?.username && touched?.username ? "error" : ""}
+              />
+              <Box sx={{ position: "absolute", right: "6px", height: "100%", display: "flex", alignItems: "center" }}>
+                {isLoading && <CircularProgress sx={{ color: "secondary.main" }} size={15} />}
+                {isUsernameUnique && touched.username && !isLoading && values.username.length !== 0 && (
+                  <CheckCircleOutline fontSize="small" sx={{ color: "success.main" }} />
+                )}
+                {!isUsernameUnique && touched.username && !isLoading && (
+                  <CancelOutlined fontSize="small" sx={{ color: "error.main" }} />
+                )}
+              </Box>
+            </Box>
             {errors?.username && touched?.username && <ErrorLabel>{errors?.username}</ErrorLabel>}
           </FormControl>
           <FormControl sx={{ width: "100%", mt: 2 }}>
