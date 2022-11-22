@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { GetServerSidePropsContext } from "next";
-import * as yup from "yup";
 import { Box, CircularProgress, FormControl, FormControlLabel, IconButton } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
@@ -23,16 +22,12 @@ import { setCredentials } from "redux/auth/authSlice";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import cookie from "cookie";
+import { loginSchema } from "utils/formikSchemas";
 
 interface IValues {
   username: string;
   password: string;
 }
-
-export const loginSchema = yup.object().shape({
-  username: yup.string().required("Please enter username"),
-  password: yup.string().required("Please enter password"),
-});
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);

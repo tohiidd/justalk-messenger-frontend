@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { GetServerSidePropsContext } from "next";
-import * as yup from "yup";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
@@ -23,6 +22,7 @@ import { getUserAvatarColor } from "utils/getUserAvatar";
 import cookie from "cookie";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "redux/auth/authSlice";
+import { registerSchema } from "utils/formikSchemas";
 
 interface IValues {
   email: string;
@@ -31,27 +31,8 @@ interface IValues {
   confirmPassword: string;
 }
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
-// min 5 characters, 1 upper case letter, 1 lower case letter, 1 numeric digit.
-
-export const registerSchema = yup.object().shape({
-  email: yup.string().email("Please enter a valid email").required("Please enter email"),
-  username: yup.string().min(3, "Username must be at least 3 characters long").required("Please enter username"),
-  password: yup
-    .string()
-    .min(5, "Password must be at least 5 characters long")
-    .matches(passwordRules, {
-      message: "Password should contain 1 upper case letter, 1 lower case letter, 1 numeric digit.",
-    })
-    .required("Please enter password"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required("Please confirm your password"),
-});
-
 export default function Register() {
-  const [showPassword, setShowPassword] = useState({ main: false, confirm: false });
+  const [showPassword, setShowPassword] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
   const router = useRouter();
@@ -125,18 +106,15 @@ export default function Register() {
               <Input
                 sx={{ width: "100%", paddingRight: "30px" }}
                 id="password"
-                type={showPassword.main ? "Password" : "text"}
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter Password"
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={errors?.password && touched?.password ? "error" : ""}
               />
-              <IconButton
-                sx={visibleIconStyles}
-                onClick={() => setShowPassword((prev) => ({ ...prev, main: !prev.main }))}
-              >
-                {showPassword.main ? <VisibilityOff /> : <Visibility />}
+              <IconButton sx={visibleIconStyles} onClick={() => setShowPassword((prev) => !prev)}>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </Box>
             {errors?.password && touched?.password && <ErrorLabel>{errors?.password}</ErrorLabel>}
@@ -147,19 +125,13 @@ export default function Register() {
               <Input
                 sx={{ width: "100%", paddingRight: "30px" }}
                 id="confirmPassword"
-                type={showPassword.confirm ? "Password" : "text"}
+                type="text"
                 placeholder="Confirm Password"
                 value={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className={errors?.confirmPassword && touched?.confirmPassword ? "error" : ""}
               />
-              <IconButton
-                sx={visibleIconStyles}
-                onClick={() => setShowPassword((prev) => ({ ...prev, confirm: !prev.confirm }))}
-              >
-                {showPassword.confirm ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
             </Box>
             {errors?.confirmPassword && touched?.confirmPassword && <ErrorLabel>{errors?.confirmPassword}</ErrorLabel>}
           </FormControl>
