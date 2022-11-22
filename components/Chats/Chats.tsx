@@ -6,8 +6,8 @@ import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import ChatMessage from "./Chat";
-import { chatMessageContainerStyles } from "./styles";
 import { chats } from "./data";
+import Container from "components/Ui/Container";
 
 function Chats() {
   const [openAddFriend, setOpenAddFriend] = useState(false);
@@ -29,11 +29,11 @@ function Chats() {
           <Typography color="secondary" component="h4" fontSize=".7rem" mb={2} fontWeight="500" sx={{ px: 3 }}>
             RECENT
           </Typography>
-          <Box sx={chatMessageContainerStyles}>
+          <Container sx={{ height: { xs: "calc(100vh - 235px )", md: "calc(100vh - 175px )" } }}>
             {chats.map((chat) => (
               <ChatMessage key={chat.id} chat={chat} />
             ))}
-          </Box>
+          </Container>
         </Box>
       </Box>
       <AddFriendModal openAddFriend={openAddFriend} setOpenAddFriend={setOpenAddFriend} />

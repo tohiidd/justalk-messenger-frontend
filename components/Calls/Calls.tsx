@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 import VoiceCallModal from "components/Modals/VoiceCallModal";
 import { TabPanelTitle } from "components/Ui/TabPanel";
-import { chatMessageContainerStyles } from "../Chats/styles";
 import Call from "./Call";
 import { calls } from "./data";
 import VideoCallModal from "components/Modals/VideoCallModal";
+import Container from "components/Ui/Container";
 
 function Calls() {
   const [openVoiceCall, setOpenVoiceCall] = useState(false);
@@ -25,11 +25,11 @@ function Calls() {
       <Box sx={{ p: 3, pb: 0, mb: 2 }}>
         <TabPanelTitle>Calls</TabPanelTitle>
       </Box>
-      <Box sx={{ ...chatMessageContainerStyles, height: { xs: "calc(100vh - 70px)" } }}>
+      <Container sx={{ height: { xs: "calc(100vh - 70px)" } }}>
         {calls.map((call) => (
           <Call key={call.id} call={call} handleToggle={handleToggle} />
         ))}
-      </Box>
+      </Container>
       {openVoiceCall && (
         <VoiceCallModal openVoiceCall={openVoiceCall} setOpenVoiceCall={setOpenVoiceCall} callId={callId} />
       )}

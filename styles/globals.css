@@ -14,3 +14,77 @@ a {
 * {
   box-sizing: border-box;
 }
+@property --var1 {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: white;
+}
+
+@keyframes lightFadeIn {
+  0% {
+    --var1: transparent;
+  }
+
+  100% {
+    --var1: #8f9198;
+  }
+}
+
+@keyframes lightFadeOut {
+  0% {
+    --var1: #8f9198;
+  }
+
+  100% {
+    --var1: transparent;
+  }
+}
+
+@keyframes darkFadeIn {
+  0% {
+    --var1: transparent;
+  }
+
+  100% {
+    --var1: #797c8c;
+  }
+}
+
+@keyframes darkFadeOut {
+  0% {
+    --var1: #797c8c;
+  }
+
+  100% {
+    --var1: transparent;
+  }
+}
+
+.container {
+  width: 100%;
+  overflow-y: overlay;
+}
+.container.light {
+  animation: lightFadeOut 0.5s ease-in-out forwards;
+}
+
+.container.light:hover {
+  animation: lightFadeIn 0.5s ease-in-out forwards;
+}
+.container.dark {
+  animation: darkFadeOut 0.5s ease-in-out forwards;
+}
+
+.container.dark:hover {
+  animation: darkFadeIn 0.5s ease-in-out forwards;
+}
+
+.container::-webkit-scrollbar {
+  background: transparent;
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: var(--var1);
+  border-radius: 4px;
+}

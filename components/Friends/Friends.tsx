@@ -5,12 +5,12 @@ import AddFriendModal from "components/Modals/AddFriendModal";
 import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
-import { chatMessageContainerStyles } from "components/Chats/styles";
 import Friend from "./Friend";
 import { friends } from "./data";
 import { getAlphabeticalOrder } from "utils/getAlphabeticalOrder";
 import { friendsTitleStyles } from "./styles";
 import { IFriend } from "./types";
+import Container from "components/Ui/Container";
 
 function Friends() {
   const [openAddFriend, setOpenAddFriend] = useState(false);
@@ -32,7 +32,7 @@ function Friends() {
         <Box>
           <SearchBar />
         </Box>
-        <Box sx={{ ...chatMessageContainerStyles, height: { xs: "calc(100vh - 202px)", md: "calc(100vh - 143px)" } }}>
+        <Container sx={{ height: { xs: "calc(100vh - 202px)", md: "calc(100vh - 143px)" } }}>
           {orderedFriends.map(([key, values]: any) => (
             <Box key={key}>
               <Box sx={friendsTitleStyles}>{key}</Box>
@@ -41,7 +41,7 @@ function Friends() {
               ))}
             </Box>
           ))}
-        </Box>
+        </Container>
       </Box>
       <AddFriendModal openAddFriend={openAddFriend} setOpenAddFriend={setOpenAddFriend} />
     </>

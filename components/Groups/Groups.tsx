@@ -5,8 +5,8 @@ import SearchBar from "components/SearchBar/SearchBar";
 import { DarkTooltip } from "components/Ui/AsideMenu";
 import { AddContactBtn, TabPanelTitle } from "components/Ui/TabPanel";
 import CreateGroupModal from "components/Modals/CreateGroupModal";
-import { chatMessageContainerStyles } from "components/Chats/styles";
 import Group from "./Group";
+import Container from "components/Ui/Container";
 
 function Groups() {
   const [openAddGroup, setOpenAddGroup] = useState(false);
@@ -25,9 +25,9 @@ function Groups() {
         <Box>
           <SearchBar />
         </Box>
-        <Box sx={chatMessageContainerStyles}>
+        <Container sx={{ height: { xs: "calc(100vh - 235px )", md: "calc(100vh - 175px )" } }}>
           <Group />
-        </Box>
+        </Container>
       </Box>
       <CreateGroupModal openAddGroup={openAddGroup} setOpenAddGroup={setOpenAddGroup} />
     </>
