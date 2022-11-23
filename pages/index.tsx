@@ -1,18 +1,18 @@
 import { useState, useEffect, SyntheticEvent, useContext } from "react";
+import { GetServerSidePropsContext } from "next";
 import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
+import cookie from "cookie";
 import TabPanel from "components/Ui/TabPanel";
+import jwt from "jwt-decode";
+import { useDispatch } from "react-redux";
 import { AsideMenu, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/AsideMenu";
 import { menuTabs } from "data";
 import ColorModeContext from "context/ColorModeContext";
 import GetStartedConversation from "components/Conversation/GetStartedConversation";
 import Conversation from "components/Conversation/Conversation";
-import { useDispatch } from "react-redux";
 import { setCredentials } from "redux/auth/authSlice";
-import cookie from "cookie";
-import jwt from "jwt-decode";
-import { GetServerSidePropsContext } from "next";
 import Avatar from "components/Avatar/Avatar";
 
 export default function Home({ token, user }: any) {

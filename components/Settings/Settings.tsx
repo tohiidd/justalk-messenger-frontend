@@ -8,11 +8,12 @@ import { headerStyles } from "../Profile/styles";
 import { avatarWrapperStyles, iconButtonStyles, statusTitleStyles } from "./styles";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import StatusDropdown from "./StatusDropdown";
-import PersonalInfo from "./Accordions/PersonalInfo";
-import Privacy from "./Accordions/Privacy";
-import Security from "./Accordions/Security";
-import Help from "./Accordions/Help";
+import PersonalInfo from "./Components/Accordions/PersonalInfo";
+import Privacy from "./Components/Accordions/Privacy";
+import Security from "./Components/Accordions/Security";
+import Help from "./Components/Accordions/Help";
 import Container from "components/Ui/Container";
+import ProfileImage from "./Components/ProfileImage/ProfileImage";
 
 export default function Profile() {
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -50,19 +51,7 @@ export default function Profile() {
         </Box>
       </Box>
       <Box sx={{ pb: "20px" }}>
-        <AvatarWrapper sx={avatarWrapperStyles}>
-          <Box sx={{ position: "relative" }}>
-            <Image
-              src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667140257/jusTalk/krdtwxpkf3baznlehems.jpg"
-              alt="avatar"
-              width={80}
-              height={80}
-            />
-            <IconButton sx={{ ...iconButtonStyles, position: "absolute", right: "0", bottom: "3px" }}>
-              <AddAPhoto sx={{ color: "common.grey200", fontSize: "1rem" }} />
-            </IconButton>
-          </Box>
-        </AvatarWrapper>
+        <ProfileImage />
         <Box sx={{ textAlign: "center", mt: 2 }}>
           <Typography
             sx={{

@@ -1,9 +1,9 @@
 import { ExpandMore, VerifiedUser } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
-import { SettingAccordion } from "components/Settings/Ui/Accordions";
-import { AccordionProps } from "../types";
-import { accordionItemStyles } from "../styles";
-import { PrivacySwitch } from "../Ui/Switches";
+import { SettingAccordion } from "components/Settings/Components/Accordions/Accordions";
+import { AccordionProps } from "../../types";
+import { accordionItemStyles } from "../../styles";
+import { PrivacySwitch } from "./Switches";
 
 function Security({ expanded, handleChange }: AccordionProps) {
   return (

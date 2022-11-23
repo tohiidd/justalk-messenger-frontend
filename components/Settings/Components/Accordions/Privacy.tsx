@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { ExpandMore, Lock } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
-import { SettingAccordion } from "components/Settings/Ui/Accordions";
-import { AccordionProps } from "../types";
-import { accordionItemStyles } from "../styles";
-import { PrivacySwitch } from "../Ui/Switches";
-import PrivacySelect from "../Ui/PrivacySelect";
+import { SettingAccordion } from "components/Settings/Components/Accordions/Accordions";
+import { AccordionProps } from "../../types";
+import { accordionItemStyles } from "../../styles";
+import { PrivacySwitch } from "./Switches";
+import PrivacySelect from "./PrivacySelect";
 
 function Privacy({ expanded, handleChange }: AccordionProps) {
   const [profileVisibility, setProfileVisibility] = useState("everybody");

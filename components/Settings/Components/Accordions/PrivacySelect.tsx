@@ -1,6 +1,6 @@
 import { FormControl, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
-import { accordionSelectStyles } from "../styles";
+import { accordionSelectStyles } from "../../styles";
 
 interface PrivacySelectProps {
   value: string;

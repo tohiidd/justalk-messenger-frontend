@@ -1,8 +1,8 @@
 import { ExpandMore, Help as HelpIcon } from "@mui/icons-material";
 import { AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
-import { SettingAccordion } from "components/Settings/Ui/Accordions";
-import { AccordionProps } from "../types";
-import { accordionItemStyles } from "../styles";
+import { SettingAccordion } from "components/Settings/Components/Accordions/Accordions";
+import { AccordionProps } from "../../types";
+import { accordionItemStyles } from "../../styles";
 
 function Help({ expanded, handleChange }: AccordionProps) {
   return (
