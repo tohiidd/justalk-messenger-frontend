@@ -1,9 +1,9 @@
 <div align='center'>
 
-[![Contributors](https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge)]( https://github.com/tohiidd/justalk-messenger/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge)](https://github.com/tohiidd/justalk-messenger/network/members)
-[![Stargazers](https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge)]( https://github.com/tohiidd/justalk-messenger/stargazers)
-[![MIT License](https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge)](https://github.com/tohiidd/justalk-messenger/blob/master/LICENSE.txt)
+[![Contributors](https://img.shields.io/github/contributors/tohiidd/justalk-messenger.svg?style=for-the-badge)]( https://github.com/tohiidd/justalk-messenger/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/tohiidd/justalk-messenger.svg?style=for-the-badge)](https://github.com/tohiidd/justalk-messenger/network/members)
+[![Stargazers](https://img.shields.io/github/stars/tohiidd/justalk-messenger.svg?style=for-the-badge)]( https://github.com/tohiidd/justalk-messenger/stargazers)
+[![MIT License](https://img.shields.io/github/license/tohiidd/justalk-messenger.svg?style=for-the-badge)](https://github.com/tohiidd/justalk-messenger/blob/master/LICENSE)
   
 </div>
 
