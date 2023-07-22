@@ -6,7 +6,6 @@ import useDisplayMenu from "hooks/useDisplayMenu";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Dispatch, SetStateAction, SyntheticEvent } from "react";
-import { useLogoutMutation } from "redux/auth/authApi";
 
 interface AvatarProps {
   setSelectedTab: Dispatch<SetStateAction<number>>;
@@ -17,21 +16,13 @@ function Avatar({ setSelectedTab }: AvatarProps) {
 
   const router = useRouter();
 
-  const [logout] = useLogoutMutation();
 
   const handleTabToggle = (event: Event | SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
     handleClose(event);
   };
   const handleLogout = async () => {
-    try {
-      const res = await logout().unwrap();
-      console.log(res);
 
-      router.replace("/auth/logout");
-    } catch (err) {
-      console.log(err);
-    }
   };
   return (
     <>

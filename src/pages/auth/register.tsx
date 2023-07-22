@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { GetServerSidePropsContext } from "next";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
 import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
@@ -16,14 +15,7 @@ import {
 } from "components/Ui/Form";
 import { CancelOutlined, CheckCircleOutline, Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { useRegisterMutation } from "redux/auth/authApi";
-import { useRouter } from "next/router";
-import { getUserAvatarColor } from "utils/getUserAvatar";
-import cookie from "cookie";
-import { useDispatch } from "react-redux";
-import { setCredentials } from "redux/auth/authSlice";
 import { registerSchema } from "utils/formikSchemas";
-import { useGetUserMutation } from "redux/users/usersApi";
 
 interface IValues {
   email: string;
@@ -37,39 +29,14 @@ export default function Register() {
   const [isUsernameUnique, setIsUsernameUnique] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
-  const router = useRouter();
-  const dispatch = useDispatch();
 
-  const [register, { isSuccess, isError }] = useRegisterMutation();
-  const [getUser, { isLoading }] = useGetUserMutation();
 
   const checkUniqueUsername = async () => {
-    try {
-      const res = await getUser(`username=${values.username}`).unwrap();
-      if (res.success) {
-        setIsUsernameUnique(false);
-      } else {
-        setIsUsernameUnique(true);
-      }
-    } catch (err) {
-      console.log(err);
-      setIsUsernameUnique(false);
-    }
   };
 
   const onSubmit = async (values: IValues) => {
-    const avatarColor = getUserAvatarColor();
-    const user = { email: values.email, username: values.username, password: values.password, avatarColor };
-    try {
-      const res = await register(user).unwrap();
-      console.log(res);
-      dispatch(setCredentials({ token: res.token, user }));
-      setSubmitMessage(res.message);
-      router.replace("/");
-    } catch (error: any) {
-      console.log(error);
-      setSubmitMessage(error.data.message);
-    }
+    // const avatarColor = getUserAvatarColor();
+    // const user = { email: values.email, username: values.username, password: values.password, avatarColor };
   };
 
   const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched } = useFormik({
@@ -90,8 +57,8 @@ export default function Register() {
           <FormTitle variant="h1">Register Account</FormTitle>
           <FormSubtitle sx={{ mt: "4px !important" }}>Get your free jusTalk account now.</FormSubtitle>
         </Box>
-        {isError && <DangerAlert>{submitMessage}</DangerAlert>}
-        {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>}
+        {/* {isError && <DangerAlert>{submitMessage}</DangerAlert>}
+        {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>} */}
         <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%" }}>
             <Label>Email</Label>
@@ -121,13 +88,13 @@ export default function Register() {
                 className={errors?.username && touched?.username ? "error" : ""}
               />
               <Box sx={{ position: "absolute", right: "6px", height: "100%", display: "flex", alignItems: "center" }}>
-                {isLoading && <CircularProgress sx={{ color: "secondary.main" }} size={15} />}
-                {isUsernameUnique && touched.username && !isLoading && values.username.length !== 0 && (
+                {/* {isLoading && <CircularProgress sx={{ color: "secondary.main" }} size={15} />} 
+                 {isUsernameUnique && touched.username && !isLoading && values.username.length !== 0 && (
                   <CheckCircleOutline fontSize="small" sx={{ color: "success.main" }} />
                 )}
                 {!isUsernameUnique && touched.username && !isLoading && (
                   <CancelOutlined fontSize="small" sx={{ color: "error.main" }} />
-                )}
+                )} */}
               </Box>
             </Box>
             {errors?.username && touched?.username && <ErrorLabel>{errors?.username}</ErrorLabel>}
@@ -186,28 +153,4 @@ export default function Register() {
       </form>
     </AuthLayout>
   );
-}
-
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
-  const { reftoken } = cookie.parse(req.headers.cookie || "");
-
-  const data = await fetch("http://localhost:5000/auth/refresh", {
-    method: "GET",
-    headers: {
-      Cookie: `reftoken=${reftoken}`,
-    },
-  }).then((res) => res.json());
-
-  if (data.success) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 }

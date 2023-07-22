@@ -16,10 +16,7 @@ import {
 } from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { useLoginMutation } from "redux/auth/authApi";
 import { useRouter } from "next/router";
-import { setCredentials } from "redux/auth/authSlice";
-import { useDispatch } from "react-redux";
 import Link from "next/link";
 import cookie from "cookie";
 import { loginSchema } from "utils/formikSchemas";
@@ -34,22 +31,10 @@ export default function Login() {
   const [submitMessage, setSubmitMessage] = useState("");
 
   const router = useRouter();
-  const dispatch = useDispatch();
 
-  const [login, { isError, isSuccess }] = useLoginMutation();
 
   const onSubmit = async (values: IValues) => {
     const user = { username: values.username, password: values.password };
-    try {
-      const res = await login(user).unwrap();
-      console.log(res);
-      dispatch(setCredentials({ token: res.data.token, user: res.data.user }));
-      setSubmitMessage(res.message);
-      router.replace("/");
-    } catch (error: any) {
-      console.log(error);
-      setSubmitMessage(error.data.message);
-    }
   };
 
   const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched } = useFormik({
@@ -68,8 +53,8 @@ export default function Login() {
           <FormTitle variant="h1">Welcome Back</FormTitle>
           <FormSubtitle sx={{ mt: "4px !important" }}>Sign in to continue with JusTalk.</FormSubtitle>
         </Box>
-        {isError && <DangerAlert>{submitMessage}</DangerAlert>}
-        {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>}
+        {/* {isError && <DangerAlert>{submitMessage}</DangerAlert>} */}
+        {/* {isSuccess && <SuccessAlert>{submitMessage}</SuccessAlert>} */}
         <Box sx={{ mt: "4px" }}>
           <FormControl sx={{ width: "100%", mt: 2 }}>
             <Label>Username</Label>
@@ -133,28 +118,4 @@ export default function Login() {
       </form>
     </AuthLayout>
   );
-}
-
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
-  const { reftoken } = cookie.parse(req.headers.cookie || "");
-
-  const data = await fetch("http://localhost:5000/auth/refresh", {
-    method: "GET",
-    headers: {
-      Cookie: `reftoken=${reftoken}`,
-    },
-  }).then((res) => res.json());
-
-  if (data.success) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 }
