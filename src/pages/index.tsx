@@ -14,13 +14,13 @@ export default function Home({ token, user }: any) {
   const [selectedTab, setSelectedTab] = useState(1);
 
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up("md"));
+  const isMd = useMediaQuery(theme.breakpoints.up("md"), {noSsr: true,defaultMatches:true});
   const { toggleColorMode } = useContext(ColorModeContext);
 
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
   };
-
+  
   return (
     <section>
       <Box sx={{ display: "flex", flexDirection: { xs: "column-reverse", md: "row" } }}>
