@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, PropsWithChildren } from "react";
 import usePersist from "hooks/usePersist";
-import Link from "next/link";
+import Link from "next/navigation";
 import { useSelector } from "react-redux";
 import { useRefreshMutation } from "redux/auth/authApi";
 import { selectAuthState } from "redux/auth/authSlice";

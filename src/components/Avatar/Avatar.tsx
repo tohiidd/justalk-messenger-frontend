@@ -4,7 +4,7 @@ import { AvatarWrapper } from "components/Ui/AsideMenu";
 import Dropdown from "components/Ui/Dropdown";
 import useDisplayMenu from "hooks/useDisplayMenu";
 import Image from "next/image";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 
 interface AvatarProps {
@@ -14,7 +14,7 @@ interface AvatarProps {
 function Avatar({ setSelectedTab }: AvatarProps) {
   const { openMenu, anchorRef, handleToggle, handleClose } = useDisplayMenu();
 
-  const router = useRouter();
+  // const router = useRouter();
 
 
   const handleTabToggle = (event: Event | SyntheticEvent, newTab: number) => {

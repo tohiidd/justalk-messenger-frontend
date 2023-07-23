@@ -1,9 +1,13 @@
-import { PropsWithChildren } from "react";
+import Image from "next/image";
+import {ReactNode} from "react";
 import { Chat } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import Image from "next/image";
 
-function AuthLayout({ children }: PropsWithChildren) {
+interface Props {
+  children: ReactNode;
+}
+
+export default function AuthLayout({children}: Props) {
   return (
     <Box
       sx={{
@@ -71,7 +75,5 @@ function AuthLayout({ children }: PropsWithChildren) {
         </Box>
       </Box>
     </Box>
-  );
+  )
 }
-
-export default AuthLayout;

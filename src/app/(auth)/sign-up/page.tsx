@@ -1,9 +1,10 @@
+'use client';
+
+import Link from 'next/link'
 import { useState } from "react";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
-import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
-import Link from "next/link";
 import {
   DangerAlert,
   ErrorLabel,
@@ -51,7 +52,6 @@ export default function Register() {
   });
 
   return (
-    <AuthLayout>
       <form onSubmit={handleSubmit}>
         <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Register Account</FormTitle>
@@ -147,10 +147,9 @@ export default function Register() {
         </Box>
         <Box>
           <FormSubtitle>
-            Already have an account?<Link href="/auth/login"> Login</Link>
+            Already have an account?<Link href="/login"> Login</Link>
           </FormSubtitle>
         </Box>
       </form>
-    </AuthLayout>
   );
 }

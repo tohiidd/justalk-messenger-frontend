@@ -1,7 +1,7 @@
+'use client';
+
 import { useState } from "react";
-import { GetServerSidePropsContext } from "next";
 import { Box, CircularProgress, FormControl, FormControlLabel, IconButton } from "@mui/material";
-import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
 import { Input } from "components/Ui/Inputs";
 import {
@@ -16,9 +16,8 @@ import {
 } from "components/Ui/Form";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useFormik } from "formik";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import cookie from "cookie";
+import { useRouter } from "next/navigation";
+import Link from 'next/link'
 import { loginSchema } from "utils/formikSchemas";
 
 interface IValues {
@@ -47,7 +46,6 @@ export default function Login() {
   });
 
   return (
-    <AuthLayout>
       <form onSubmit={handleSubmit}>
         <Box textAlign="center" mb={4}>
           <FormTitle variant="h1">Welcome Back</FormTitle>
@@ -112,10 +110,9 @@ export default function Login() {
         </Box>
         <Box>
           <FormSubtitle>
-            Don&apos;t have an account?<Link href="/auth/register"> Register</Link>
+            Don&apos;t have an account?<Link href="/sign-up"> Register</Link>
           </FormSubtitle>
         </Box>
       </form>
-    </AuthLayout>
   );
 }

@@ -1,6 +1,8 @@
+'use client';
+
+import Link from "next/link";
 import { useState } from "react";
 import { Box, CircularProgress, FormControl, IconButton, Typography } from "@mui/material";
-import AuthLayout from "components/Layouts/AuthLayout";
 import { AvatarWrapper } from "components/Ui/AsideMenu";
 import { DangerAlert, ErrorLabel, FormTitle, Label, SuccessAlert, visibleIconStyles } from "components/Ui/Form";
 import { Input } from "components/Ui/Inputs";
@@ -9,7 +11,6 @@ import { useFormik } from "formik";
 import { FormButton, GreyButton } from "components/Ui/Buttons";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { passwordSchema } from "utils/formikSchemas";
-import Link from "next/link";
 
 interface IValues {
   oldPassword: string;
@@ -17,7 +18,7 @@ interface IValues {
   confirmNewPassword: string;
 }
 
-function ChangePassword() {
+export default function ChangePassword() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
 
@@ -34,7 +35,6 @@ function ChangePassword() {
   });
 
   return (
-    <AuthLayout>
       <form onSubmit={handleSubmit}>
         <Box textAlign="center" mb={6}>
           <FormTitle variant="h1">Change Password</FormTitle>
@@ -120,8 +120,6 @@ function ChangePassword() {
           </GreyButton>
         </Box>
       </form>
-    </AuthLayout>
   );
 }
 
-export default ChangePassword;

@@ -1,12 +1,12 @@
+'use client';
+
+import Link from 'next/link'
 import { Person } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import AuthLayout from "components/Layouts/AuthLayout";
 import { FormButton } from "components/Ui/Buttons";
-import Link from "next/link";
 
 export default function Logout() {
   return (
-    <AuthLayout>
       <Box textAlign="center">
         <Box
           sx={{
@@ -34,10 +34,9 @@ export default function Logout() {
         >
           Thanks for using <span>JusTalk</span>
         </Typography>
-        <Link href="/auth/login">
+        <Link href="/login">
           <FormButton>Sign In</FormButton>
         </Link>
       </Box>
-    </AuthLayout>
   );
 }
