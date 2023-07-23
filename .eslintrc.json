@@ -5,6 +5,13 @@
     "React": "readonly"
   },
   "rules": {
-    "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }]
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "semi": ["error", "never"],
+    "no-var": "error",
+    "indent": ["error", "tab"],
+    "prefer-const": "error",
+    "camelcase": "warn",
+    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+     "eqeqeq": ["error", "smart"]
   }
 }
