@@ -19,6 +19,7 @@ export default function HomePage() {
       sx={{
         display: "block",
         width: "100%",
+        height: "100%",
         position: {xs: "absolute", md: "static"},
         top: "0",
         right: id ? "0" : "-1000px",
@@ -26,6 +27,7 @@ export default function HomePage() {
           "url(https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667645283/jusTalk/eoojdubgmbo3jcnmssqc.png)",
         backgroundColor: "common.grey",
         transition: "all 200ms ease-in-out",
+        zIndex: 9999,
       }}
     >
       {!id && isMd ? <GetStartedConversation /> : <Conversation />}

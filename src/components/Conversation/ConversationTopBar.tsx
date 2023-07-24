@@ -50,6 +50,7 @@ function ConversationTopBar() {
           borderBottom: "1px solid ",
           borderBottomColor: theme.palette.mode === "light" ? "#eaeaf1" : "#333",
           padding: "25px",
+          zIndex: 99999,
         }}
       >
         <Box sx={{display: "flex", justifyContent: "space-between"}}>
