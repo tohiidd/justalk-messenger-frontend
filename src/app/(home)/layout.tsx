@@ -1,85 +1,74 @@
-'use client';
+"use client";
 
-import { useState,  SyntheticEvent, useContext,ReactNode } from "react";
-import { useMediaQuery, Box } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { Chat, DarkModeOutlined, LightMode } from "@mui/icons-material";
+import {useState, SyntheticEvent, useContext, ReactNode} from "react";
+import {useMediaQuery, Box} from "@mui/material";
+import {useTheme} from "@mui/material/styles";
+import {Chat, DarkModeOutlined, LightMode} from "@mui/icons-material";
 import TabPanel from "components/Ui/TabPanel";
-import { AsideMenu, AsideTab, AsideTabs, DarkTooltip } from "components/Ui/AsideMenu";
-import { menuTabs } from "data";
+import {AsideMenu, AsideTab, AsideTabs, DarkTooltip} from "components/Ui/AsideMenu";
+import {menuTabs} from "data";
 import ColorModeContext from "context/ColorModeContext";
 import Avatar from "components/Avatar/Avatar";
-
 
 interface Props {
   children: ReactNode;
 }
 export default function HomeLayout({children}: Props) {
-    const [selectedTab, setSelectedTab] = useState(1);
+  const [selectedTab, setSelectedTab] = useState(1);
 
-    const theme = useTheme();
-    const isMd = useMediaQuery(theme.breakpoints.up("md"), {noSsr: true,defaultMatches:true});
-    const { toggleColorMode } = useContext(ColorModeContext);
-  
-    const handleChange = (event: SyntheticEvent, newTab: number) => {
-      setSelectedTab(newTab);
-    };
-    return (
+  const theme = useTheme();
+  const isMd = useMediaQuery(theme.breakpoints.up("md"), {defaultMatches: true});
+  const {toggleColorMode} = useContext(ColorModeContext);
+
+  const handleChange = (event: SyntheticEvent, newTab: number) => {
+    setSelectedTab(newTab);
+  };
+  return (
     <section>
-    <Box sx={{ display: "flex", flexDirection: { xs: "column-reverse", md: "row" } }}>
-      <AsideMenu>
-        {isMd && (
-          <Box className="app-bar-logo">
-            <Chat sx={{ color: "success.main", verticalAlign: "middle" }} />
+      <Box sx={{display: "flex", flexDirection: {xs: "column-reverse", md: "row"}}}>
+        <AsideMenu sx={{overflow: "hidden"}}>
+          {isMd && (
+            <Box className="app-bar-logo">
+              <Chat sx={{color: "success.main", verticalAlign: "middle"}} />
+            </Box>
+          )}
+          <AsideTabs
+            orientation={isMd ? "vertical" : "horizontal"}
+            value={selectedTab}
+            onChange={handleChange}
+            aria-label="AsideMenu tabs "
+          >
+            {menuTabs.map(({id, title, icon}) => (
+              <AsideTab
+                key={id}
+                icon={<DarkTooltip title={title}>{icon}</DarkTooltip>}
+                sx={{display: !isMd && id === 0 ? "none" : "inline-flex"}}
+              />
+            ))}
+          </AsideTabs>
+          <Box
+            sx={{flexGrow: {xs: "1", md: "unset"}, textAlign: "center", marginTop: {xs: "unset", md: "auto"}}}
+            onClick={toggleColorMode}
+          >
+            <DarkTooltip title="Dark Mode">
+              {theme.palette.mode === "light" ? (
+                <DarkModeOutlined sx={{fontSize: {xs: "1.5rem", md: "1.8rem"}}} />
+              ) : (
+                <LightMode sx={{fontSize: {xs: "1.5rem", md: "1.8rem"}}} />
+              )}
+            </DarkTooltip>
           </Box>
-        )}
-        <AsideTabs
-          orientation={isMd ? "vertical" : "horizontal"}
-          value={selectedTab}
-          onChange={handleChange}
-          aria-label="AsideMenu tabs "
-        >
-          {menuTabs.map(({ id, title, icon }) => (
-            <AsideTab
-              key={id}
-              icon={<DarkTooltip title={title}>{icon}</DarkTooltip>}
-              sx={{ display: !isMd && id === 0 ? "none" : "inline-flex" }}
-            />
+          <Avatar setSelectedTab={setSelectedTab} />
+        </AsideMenu>
+        <section>
+          {menuTabs.map(({id, panel}) => (
+            <TabPanel key={id} value={selectedTab} index={id}>
+              {panel}
+            </TabPanel>
           ))}
-        </AsideTabs>
-        <Box
-          sx={{ flexGrow: { xs: "1", md: "unset" }, textAlign: "center", marginTop: { xs: "unset", md: "auto" } }}
-          onClick={toggleColorMode}
-        >
-          <DarkTooltip title="Dark Mode">
-            {theme.palette.mode === "light" ? (
-              <DarkModeOutlined sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }} />
-            ) : (
-              <LightMode sx={{ fontSize: { xs: "1.5rem", md: "1.8rem" } }} />
-            )}
-          </DarkTooltip>
-        </Box>
-        <Avatar setSelectedTab={setSelectedTab} />
-      </AsideMenu>
-      <section>
-        {menuTabs.map(({ id, panel }) => (
-          <TabPanel key={id} value={selectedTab} index={id}>
-            {panel}
-          </TabPanel>
-        ))}
-      </section>
-      <Box
-        component="section"
-        sx={{
-          display: { xs: "none", md: "block" },
-          width: "100%",
-          backgroundImage:
-            "url(https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667645283/jusTalk/eoojdubgmbo3jcnmssqc.png)",
-          backgroundColor: "common.grey",
-        }}
-      >
-       {children}
+        </section>
+        {children}
       </Box>
-    </Box>
-  </section>)
+    </section>
+  );
 }
