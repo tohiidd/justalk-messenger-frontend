@@ -19,7 +19,7 @@ export default function HomePage() {
       sx={{
         display: "block",
         width: "100%",
-        height: "100%",
+        height: {xs: "100%", md: "unset"},
         position: {xs: "absolute", md: "static"},
         top: "0",
         right: id ? "0" : "-1000px",

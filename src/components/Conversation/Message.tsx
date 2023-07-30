@@ -28,16 +28,15 @@ function Message({userId, message, date, index}: Props) {
           />
         </Box>
 
-        <Box sx={{textAlign: isMe ? "right" : "left"}}>
+        <Box sx={{textAlign: isMe ? "left" : "right"}}>
           <Typography
             component="p"
             sx={{
               padding: "10px",
-              backgroundColor: isMe ? "white" : "common.lightGreen",
+              backgroundColor: isMe ? "common.white" : "common.lightGreen",
               color: "common.black",
               fontSize: "15px",
               borderRadius: "3px",
-              marginBottom: "5px",
             }}
           >
             {message}

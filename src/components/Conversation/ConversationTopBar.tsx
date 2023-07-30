@@ -45,11 +45,11 @@ function ConversationTopBar() {
         sx={{
           width: "100%",
           position: "absolute",
-          backgroundColor: "common.softWhite",
-          backdropFilter: {xs: "blur(20px)", md: "blur(7px)"},
+          backgroundColor: {xs: "common.white", md: "common.softWhite"},
+          backdropFilter: {md: "blur(7px)"},
           borderBottom: "1px solid ",
           borderBottomColor: theme.palette.mode === "light" ? "#eaeaf1" : "#333",
-          padding: "25px",
+          padding: {xs: "15px", md: "25px"},
           zIndex: 99999,
         }}
       >
