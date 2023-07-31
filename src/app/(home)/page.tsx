@@ -27,7 +27,7 @@ export default function HomePage() {
           "url(https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667645283/jusTalk/eoojdubgmbo3jcnmssqc.png)",
         backgroundColor: "common.grey",
         transition: "all 200ms ease-in-out",
-        zIndex: 9999,
+        zIndex: 12,
       }}
     >
       {!id && isMd ? <GetStartedConversation /> : <Conversation />}

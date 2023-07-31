@@ -26,7 +26,7 @@ export default function HomeLayout({children}: Props) {
   return (
     <section>
       <Box sx={{display: "flex", flexDirection: {xs: "column-reverse", md: "row"}}}>
-        <AsideMenu sx={{overflow: "hidden"}}>
+        <AsideMenu sx={{overflow: "hidden", zIndex: "10"}}>
           {isMd && (
             <Box className="app-bar-logo">
               <Chat sx={{color: "success.main", verticalAlign: "middle"}} />
