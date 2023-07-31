@@ -1,33 +1,33 @@
-import { Box, Checkbox, CheckboxProps, FormLabel, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Box, Checkbox, CheckboxProps, FormLabel, Typography} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
-export const Label = styled(FormLabel)(({ theme }) => ({
+export const Label = styled(FormLabel)(({theme}) => ({
   fontSize: ".8rem",
   fontWeight: "500",
   color: theme.palette.common.black,
   marginBottom: "8px",
 }));
 
-export const FormTitle = styled(Typography)(({ theme }) => ({
+export const FormTitle = styled(Typography)(({theme}) => ({
   color: theme.palette.common.black,
   fontSize: "1.5rem",
   fontWeight: 500,
 }));
-export const FormSubtitle = styled(Typography)(({ theme }) => ({
+export const FormSubtitle = styled(Typography)(({theme}) => ({
   fontSize: ".8rem",
   textAlign: "center",
   marginTop: "10px",
   color: theme.palette.common.grey200,
-  a: { color: theme.palette.success.main },
+  a: {color: theme.palette.success.main},
 }));
 
-export const ErrorLabel = styled(Typography)(({ theme }) => ({
+export const ErrorLabel = styled(Typography)(({theme}) => ({
   fontSize: ".7rem",
   marginTop: "2px",
   fontWeight: 500,
   color: theme.palette.error.main,
 }));
-const BpIcon = styled("span")(({ theme }) => ({
+const BpIcon = styled("span")(({theme}) => ({
   borderRadius: 3,
   width: 16,
   height: 16,
@@ -56,7 +56,7 @@ const BpIcon = styled("span")(({ theme }) => ({
 export const visibleIconStyles = {
   position: "absolute",
   right: "0",
-  "& .MuiSvgIcon-root": { color: "secondary.main", fontSize: "1rem" },
+  "& .MuiSvgIcon-root": {color: "secondary.main", fontSize: "1rem"},
 };
 
 const BpCheckedIcon = styled(BpIcon)({
@@ -70,7 +70,7 @@ const BpCheckedIcon = styled(BpIcon)({
       "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath" +
       " fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
       "1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
-    content: '""',
+    content: '""', // eslint-disable-line
   },
   "input:hover ~ &": {
     backgroundColor: "#4eac6d",
@@ -80,18 +80,18 @@ const BpCheckedIcon = styled(BpIcon)({
 export const BpCheckBox = (props: CheckboxProps) => (
   <Checkbox
     sx={{
-      "&:hover": { bgcolor: "transparent" },
+      "&:hover": {bgcolor: "transparent"},
     }}
     disableRipple
     color="default"
     checkedIcon={<BpCheckedIcon />}
     icon={<BpIcon />}
-    inputProps={{ "aria-label": "Checkbox demo" }}
+    inputProps={{"aria-label": "Checkbox demo"}}
     {...props}
   />
 );
 
-export const DangerAlert = styled(Box)(({ theme }) => ({
+export const DangerAlert = styled(Box)(() => ({
   color: "#8f2b43",
   backgroundColor: "#fcdae2",
   border: "1px solid #fac8d4",
@@ -100,7 +100,7 @@ export const DangerAlert = styled(Box)(({ theme }) => ({
   fontSize: ".8rem",
   fontWeight: 500,
 }));
-export const SuccessAlert = styled(Box)(({ theme }) => ({
+export const SuccessAlert = styled(Box)(() => ({
   color: "#048060",
   backgroundColor: "#cdf7ec",
   border: "1px solid #b4f3e3",

@@ -1,4 +1,4 @@
-import { PaletteMode, ThemeOptions } from "@mui/material";
+import {PaletteMode, ThemeOptions} from "@mui/material";
 
 declare module "@mui/material/styles/createPalette" {
   interface CommonColors {
@@ -28,10 +28,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             softDark: "rgba(52,58,64,.18)",
             yellow: "#ffd166",
           },
-          primary: { main: "#5a636c" },
-          secondary: { main: "#8f9198" },
-          success: { main: "#4eac6d" },
-          error: { main: "#ef476f" },
+          primary: {main: "#5a636c"},
+          secondary: {main: "#8f9198"},
+          success: {main: "#4eac6d"},
+          error: {main: "#ef476f"},
         }
       : {
           common: {
@@ -45,10 +45,10 @@ export const getDesignTokens = (mode: PaletteMode): ThemeOptions => ({
             softDark: "rgba(143,145,152,.18)",
             yellow: "#ffd166",
           },
-          primary: { main: "#adb5bd" },
-          secondary: { main: "#797c8c" },
-          success: { main: "#4eac6d" },
-          error: { main: "#ef476f" },
+          primary: {main: "#adb5bd"},
+          secondary: {main: "#797c8c"},
+          success: {main: "#4eac6d"},
+          error: {main: "#ef476f"},
         }),
   },
 });

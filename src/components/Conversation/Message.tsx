@@ -9,9 +9,9 @@ interface Props {
 }
 
 function Message({userId, message, date, index}: Props) {
-  let myId = "4";
+  const myId = "4";
 
-  let isMe = userId === myId;
+  const isMe = userId === myId;
 
   return (
     <Box sx={{display: "flex", justifyContent: isMe ? "start" : "end "}}>

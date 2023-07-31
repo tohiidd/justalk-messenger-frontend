@@ -1,17 +1,29 @@
-
 {
-  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "globals": {
     "React": "readonly"
   },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "semi": ["error", "never"],
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-unused-vars": ["warn", {"argsIgnorePattern": "A-Z"}],
+    "semi": ["error", "always"],
     "no-var": "error",
-    "indent": ["error", "tab"],
+    "indent": [
+      "error",
+      2,
+      {
+        "FunctionDeclaration": {"body": 1},
+        "FunctionExpression": {"body": 1},
+        "ObjectExpression": "off",
+        "offsetTernaryExpressions": true
+      }
+    ],
     "prefer-const": "error",
     "camelcase": "warn",
-    "quotes": ["error", "double", { "allowTemplateLiterals": true }],
-     "eqeqeq": ["error", "smart"]
+    "quotes": ["error", "double", {"allowTemplateLiterals": true}],
+    "eqeqeq": ["error", "smart"]
   }
 }

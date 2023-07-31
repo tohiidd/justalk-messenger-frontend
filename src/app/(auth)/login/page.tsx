@@ -4,19 +4,10 @@ import {useState} from "react";
 import {Box, CircularProgress, FormControl, FormControlLabel, IconButton} from "@mui/material";
 import {FormButton} from "components/Ui/Buttons";
 import {Input} from "components/Ui/Inputs";
-import {
-  BpCheckBox,
-  DangerAlert,
-  ErrorLabel,
-  FormSubtitle,
-  FormTitle,
-  Label,
-  SuccessAlert,
-  visibleIconStyles,
-} from "components/Ui/Form";
+import {BpCheckBox, ErrorLabel, FormSubtitle, FormTitle, Label, visibleIconStyles} from "components/Ui/Form";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {useFormik} from "formik";
-import {useRouter} from "next/navigation";
+// import {useRouter} from "next/navigation";
 import Link from "next/link";
 import {loginSchema} from "utils/formikSchemas";
 
@@ -27,12 +18,12 @@ interface IValues {
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
+  // const [submitMessage, setSubmitMessage] = useState("");
 
-  const router = useRouter();
+  // const router = useRouter();
 
-  const onSubmit = async (values: IValues) => {
-    const user = {username: values.username, password: values.password};
+  const onSubmit = async () => {
+    // const user = {username: values.username, password: values.password};
   };
 
   const {values, errors, handleChange, handleBlur, handleSubmit, isSubmitting, touched} = useFormik({

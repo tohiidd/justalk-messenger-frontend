@@ -7,7 +7,7 @@ export const friendsTitleStyles = {
   position: "relative",
   overflow: "hidden",
   "&:after": {
-    content: '" "',
+    content: '" "', // eslint-disable-line
     position: "absolute",
     top: "50%",
     left: "50px",

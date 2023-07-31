@@ -1,10 +1,10 @@
-import { createContext, PropsWithChildren, useMemo, useState } from "react";
-import { createTheme, ThemeProvider } from "@mui/material";
-import { getDesignTokens } from "theme";
+import {createContext, PropsWithChildren, useMemo, useState} from "react";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {getDesignTokens} from "theme";
 
-const ColorModeContext = createContext({ toggleColorMode: () => {} });
+const ColorModeContext = createContext({toggleColorMode: () => {}});
 
-export function ColorModeContextProvider({ children }: PropsWithChildren) {
+export function ColorModeContextProvider({children}: PropsWithChildren) {
   const [mode, setMode] = useState<"light" | "dark">("light");
 
   const colorMode = useMemo(
@@ -16,7 +16,7 @@ export function ColorModeContextProvider({ children }: PropsWithChildren) {
     []
   );
 
-  let theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>

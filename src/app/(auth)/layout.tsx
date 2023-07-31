@@ -1,7 +1,7 @@
 import Image from "next/image";
 import {ReactNode} from "react";
-import { Chat } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import {Chat} from "@mui/icons-material";
+import {Box, Typography} from "@mui/material";
 
 interface Props {
   children: ReactNode;
@@ -12,9 +12,9 @@ export default function AuthLayout({children}: Props) {
     <Box
       sx={{
         display: "flex",
-        width: { md: "100vw" },
-        flexDirection: { xs: "column ", md: "row" },
-        height: { md: "100vh" },
+        width: {md: "100vw"},
+        flexDirection: {xs: "column ", md: "row"},
+        height: {md: "100vh"},
         minHeight: "100vh",
         backgroundColor: "success.main",
       }}
@@ -23,26 +23,24 @@ export default function AuthLayout({children}: Props) {
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: { xs: "center", md: "space-between" },
-          width: { xs: "100%", md: "33%" },
-          padding: { xs: "20px", md: "48px" },
+          justifyContent: {xs: "center", md: "space-between"},
+          width: {xs: "100%", md: "33%"},
+          padding: {xs: "20px", md: "48px"},
           zIndex: 1,
         }}
       >
         <Box>
-          <Box
-            sx={{ display: "flex", justifyContent: { xs: "center", md: "start" }, alignItems: "center", gap: "16px" }}
-          >
-            <Chat sx={{ color: "#fff", fontSize: "1.8rem" }} />
-            <Typography component="h1" sx={{ color: "#fff", fontSize: "1.4rem", fontWeight: 500 }}>
+          <Box sx={{display: "flex", justifyContent: {xs: "center", md: "start"}, alignItems: "center", gap: "16px"}}>
+            <Chat sx={{color: "#fff", fontSize: "1.8rem"}} />
+            <Typography component="h1" sx={{color: "#fff", fontSize: "1.4rem", fontWeight: 500}}>
               JusTalk
             </Typography>
           </Box>
-          <Typography component="h4" sx={{ color: "#ffffff80", mt: 1, textAlign: { xs: "center", md: "left" } }}>
+          <Typography component="h4" sx={{color: "#ffffff80", mt: 1, textAlign: {xs: "center", md: "left"}}}>
             Fast And Secure Messenger
           </Typography>
         </Box>
-        <Box sx={{ display: { xs: "none", md: "block" } }}>
+        <Box sx={{display: {xs: "none", md: "block"}}}>
           <Image
             src="https://res.cloudinary.com/dmgb7kvmn/image/upload/v1667648893/jusTalk/xo8edelzz3zdcim9wgrm.png"
             alt="auth"
@@ -51,7 +49,7 @@ export default function AuthLayout({children}: Props) {
           />
         </Box>
       </Box>
-      <Box sx={{ flexGrow: "1", p: { xs: 1, sm: 2, md: 4 } }}>
+      <Box sx={{flexGrow: "1", p: {xs: 1, sm: 2, md: 4}}}>
         <Box
           sx={{
             height: "100%",
@@ -64,9 +62,9 @@ export default function AuthLayout({children}: Props) {
         >
           <Box
             sx={{
-              width: { xs: "90%", sm: "70%", md: "50%" },
+              width: {xs: "90%", sm: "70%", md: "50%"},
               maxWidth: "500px",
-              padding: { xs: "50px 0", md: "0" },
+              padding: {xs: "50px 0", md: "0"},
               zIndex: "2",
             }}
           >
@@ -75,5 +73,5 @@ export default function AuthLayout({children}: Props) {
         </Box>
       </Box>
     </Box>
-  )
+  );
 }

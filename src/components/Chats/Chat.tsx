@@ -22,7 +22,7 @@ function Chat({chat}: ChatProps) {
   }
 
   function handleClick() {
-    let url = `${pathname}?id=${id}`;
+    const url = `${pathname}?id=${id}`;
     push(url);
   }
   return (

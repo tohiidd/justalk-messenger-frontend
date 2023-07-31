@@ -1,9 +1,9 @@
-import { Box, Typography, TypographyProps } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import {Box, Typography, TypographyProps} from "@mui/material";
+import {styled} from "@mui/material/styles";
 
 export const FriendName = styled((props: TypographyProps) => (
   <Typography {...props} component="span" color="primary" />
-))(({ theme }) => ({
+))(() => ({
   textTransform: "capitalize",
   fontSize: ".9rem",
   fontWeight: 500,
@@ -14,7 +14,7 @@ export const FriendName = styled((props: TypographyProps) => (
   overflow: "hidden",
 }));
 
-export const FriendAvatar = styled(Box)(({ theme }) => ({
+export const FriendAvatar = styled(Box)(() => ({
   borderRadius: "50%",
   width: "40px",
   height: "40px",
