@@ -15,7 +15,7 @@ export const registerSchema = yup.object().shape({
     .required("Please enter password"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .oneOf([yup.ref("password")], "Passwords must match")
     .required("Please confirm your password"),
 });
 export const loginSchema = yup.object().shape({
@@ -34,6 +34,6 @@ export const passwordSchema = yup.object().shape({
     .required("Please enter new password"),
   confirmNewPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .oneOf([yup.ref("password")], "Passwords must match")
     .required("Please confirm your new password"),
 });
