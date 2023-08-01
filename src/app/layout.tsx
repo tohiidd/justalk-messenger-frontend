@@ -5,9 +5,10 @@ import {ColorModeContextProvider} from "context/ColorModeContext";
 import {ApolloProvider, ApolloClient, InMemoryCache} from "@apollo/client";
 
 import "./styles.css";
+import {AuthContextProvider} from "context/AuthContext";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000",
+  uri: "http://localhost:5000/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -19,7 +20,9 @@ export default function RootLayout({children}: Props) {
     <html lang="en">
       <body>
         <ApolloProvider client={client}>
-          <ColorModeContextProvider>{children}</ColorModeContextProvider>
+          <ColorModeContextProvider>
+            <AuthContextProvider>{children}</AuthContextProvider>
+          </ColorModeContextProvider>
         </ApolloProvider>
       </body>
     </html>
