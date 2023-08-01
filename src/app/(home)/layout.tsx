@@ -1,6 +1,6 @@
 "use client";
 
-import {useState, SyntheticEvent, useContext, ReactNode} from "react";
+import {useState, useEffect, SyntheticEvent, useContext, ReactNode} from "react";
 import {useMediaQuery, Box} from "@mui/material";
 import {useTheme} from "@mui/material/styles";
 import {Chat, DarkModeOutlined, LightMode} from "@mui/icons-material";
@@ -23,6 +23,7 @@ export default function HomeLayout({children}: Props) {
   const handleChange = (event: SyntheticEvent, newTab: number) => {
     setSelectedTab(newTab);
   };
+
   return (
     <section>
       <Box sx={{display: "flex", flexDirection: {xs: "column-reverse", md: "row"}}}>

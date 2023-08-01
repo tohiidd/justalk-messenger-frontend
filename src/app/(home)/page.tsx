@@ -11,7 +11,6 @@ export default function HomePage() {
 
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up("md"), {defaultMatches: true});
-  console.log(!id && isMd);
 
   return (
     <Box
