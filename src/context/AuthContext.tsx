@@ -1,4 +1,4 @@
-import {ReactNode, createContext, useState} from "react";
+import {ReactNode, createContext, useState, useContext} from "react";
 
 interface IUser {
   email: string;
@@ -37,3 +37,5 @@ export function AuthContextProvider({children}: Props) {
   };
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 }
+
+export const useAuthContext = () => useContext(AuthContext);

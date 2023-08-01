@@ -26,7 +26,21 @@ const REGISTER = gql`
     }
   }
 `;
-export const useRegisterUser = () => useMutation(REGISTER);
+export const useRegister = () => useMutation(REGISTER);
+
+const LOGIN = gql`
+  mutation login($username: String!, $password: String!, $rememberMe: Boolean!) {
+    login(body: {username: $username, password: $password, rememberMe: $rememberMe}) {
+      access_token
+      user {
+        username
+        email
+        avatarColor
+      }
+    }
+  }
+`;
+export const useLogin = () => useMutation(LOGIN);
 
 const FIND_BY_USERNAME = gql`
   query findByUsername($username: String!) {

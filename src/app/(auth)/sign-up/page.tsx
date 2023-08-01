@@ -17,10 +17,10 @@ import {
 import {CancelOutlined, CheckCircleOutline, Visibility, VisibilityOff} from "@mui/icons-material";
 import {useFormik} from "formik";
 import {registerSchema} from "utils/formikSchemas";
-import {useFindByUsername, useRegisterUser} from "hooks/useUser";
+import {useFindByUsername, useRegister} from "hooks/useUser";
 import {getUserAvatarColor} from "utils/getUserAvatar";
 import {useRouter} from "next/navigation";
-import {AuthContext} from "context/AuthContext";
+import {AuthContext, useAuthContext} from "context/AuthContext";
 import {useDebounce} from "hooks/useDebounce";
 
 interface IValues {
@@ -34,11 +34,11 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [userLoading, setUserLoading] = useState(false);
 
-  const {setCredentials} = useContext(AuthContext);
+  const {setCredentials} = useAuthContext();
 
   const {replace} = useRouter();
 
-  const [registerUser, {data, error}] = useRegisterUser();
+  const [register, {data, error}] = useRegister();
   const [findByUsername, {loading, error: findUserError}] = useFindByUsername();
 
   const checkUniqueUsername = async () => {
@@ -57,7 +57,7 @@ export default function Register() {
       avatarColor,
       rememberMe: true,
     };
-    const res = await registerUser({variables: user});
+    const res = await register({variables: user});
 
     if (res) {
       const {access_token: token, user} = res.data.register;
@@ -88,7 +88,7 @@ export default function Register() {
         <FormSubtitle sx={{mt: "4px !important"}}>Get your free jusTalk account now.</FormSubtitle>
       </Box>
       {error && <DangerAlert>{error?.message}</DangerAlert>}
-      {data && <SuccessAlert>Register User Successfully</SuccessAlert>}
+      {data && <SuccessAlert>Register User Successfully!</SuccessAlert>}
       <Box sx={{mt: "4px"}}>
         <FormControl sx={{width: "100%"}}>
           <Label>Email</Label>
