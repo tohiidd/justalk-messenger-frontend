@@ -82,13 +82,13 @@ function ConversationTopBar() {
             <IconButton>
               <Search sx={{color: "common.grey200"}} />
             </IconButton>
-            <IconButton sx={{display: {xs: "none", md: "block"}}} onClick={handleToggleModal("voice")}>
+            <IconButton sx={{display: {xs: "none", md: "inline-flex"}}} onClick={handleToggleModal("voice")}>
               <Call sx={{color: "common.grey200"}} />
             </IconButton>
-            <IconButton sx={{display: {xs: "none", md: "block"}}} onClick={handleToggleModal("video")}>
+            <IconButton sx={{display: {xs: "none", md: "inline-flex"}}} onClick={handleToggleModal("video")}>
               <VideocamOutlined sx={{color: "common.grey200"}} />
             </IconButton>
-            <IconButton sx={{display: {xs: "none", md: "block"}}}>
+            <IconButton sx={{display: {xs: "none", md: "inline-flex"}}}>
               <Info sx={{color: "common.grey200"}} />
             </IconButton>
             <IconButton ref={anchorRef} onClick={handleToggle}>

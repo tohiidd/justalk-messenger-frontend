@@ -4,7 +4,7 @@ import Container from "components/Ui/Container";
 
 function ConversationContent() {
   return (
-    <Container sx={{position: "absolute", top: "0", height: "85%", width: "100%", padding: "20px"}}>
+    <Container sx={{position: "absolute", top: "0", height: "88%", width: "100%", padding: "20px"}}>
       {conversation.map(({userId, message, date}, index) => (
         <Message key={userId} userId={userId} message={message} date={date} index={index} />
       ))}
