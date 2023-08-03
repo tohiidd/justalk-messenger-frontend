@@ -17,6 +17,7 @@
     "@mui/material": "^5.10.11",
     "@mui/styled-engine-sc": "^5.10.6",
     "@types/cookie": "^0.5.1",
+    "emoji-picker-react": "^4.4.10",
     "formik": "^2.2.9",
     "graphql": "^16.7.1",
     "next": "^13.4.12",
