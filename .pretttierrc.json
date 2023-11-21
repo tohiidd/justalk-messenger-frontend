@@ -1,0 +1,17 @@
+{
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": true,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "printWidth": 90,
+  "useTabs": false,
+  "importOrder": [
+    "^react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@digikala/(.*)$",
+    "^@/(.*)$",
+    "^~/",
+    "^[./]"
+  ]
+}
